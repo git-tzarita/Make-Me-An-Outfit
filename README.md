@@ -1,2 +1,2 @@
-# Make-Me-An-Outfit
-Make Me an Outfit App
+# project-3
+Make Me An Outfit
