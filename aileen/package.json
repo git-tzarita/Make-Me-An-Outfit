@@ -1,0 +1,25 @@
+{
+  "name": "make-me-an-outfit",
+  "version": "1.0.0",
+  "description": "Make Me An Outfit",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/git-tzarita/Make-Me-An-Outfit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/git-tzarita/Make-Me-An-Outfit/issues"
+  },
+  "homepage": "https://github.com/git-tzarita/Make-Me-An-Outfit#readme",
+  "dependencies": {
+    "express": "^4.15.4",
+    "nodemon": "^1.12.1"
+  }
+}
