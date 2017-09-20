@@ -1,1 +1,16 @@
-migration.sql
+\c makeoutfit_db
+
+
+
+DROP TABLE IF EXISTS tops;
+DROP TABLE IF EXISTS bottoms;
+
+CREATE TABLE IF NOT EXISTS tops(
+  id BIGSERIAL PRIMARY KEY,
+  top_url VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS bottoms(
+  id BIGSERIAL PRIMARY KEY,
+  bottom_url VARCHAR(255)
+);
