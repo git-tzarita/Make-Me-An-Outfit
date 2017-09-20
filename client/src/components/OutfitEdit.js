@@ -5,6 +5,7 @@ class OutfitEdit extends Component {
     return (
       <div>
         <h2>Hello from Outfit Edit page</h2>
+
       </div>
     );
   }

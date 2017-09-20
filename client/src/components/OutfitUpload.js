@@ -9,6 +9,7 @@ class OutfitUpload extends Component {
     return (
       <div>
         <h2>Hello from Outfit Upload page</h2>
+
       </div>
     )
   }
