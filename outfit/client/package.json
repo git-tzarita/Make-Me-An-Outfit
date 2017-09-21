@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "bootstrap": "^3.3.7",
+    "cloudinary-react": "^1.0.4",
     "express": "^4.15.4",
     "react": "^15.6.1",
     "react-bootstrap": "^0.31.3",
