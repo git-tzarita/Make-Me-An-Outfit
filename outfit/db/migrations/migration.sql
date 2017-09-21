@@ -11,12 +11,14 @@ DROP TABLE IF EXISTS bottoms;
 CREATE TABLE IF NOT EXISTS tops(
   id BIGSERIAL PRIMARY KEY,
   top_url VARCHAR(255)
+
 );
 
 
 CREATE TABLE IF NOT EXISTS bottoms(
   id BIGSERIAL PRIMARY KEY,
   bottom_url VARCHAR(255)
+
 );
 
 
@@ -34,3 +36,4 @@ CREATE TABLE outfits(
   bottomsIDs INTEGER REFERENCES bottoms(id),
   user_id INTEGER REFERENCES users(id)
 );
+
