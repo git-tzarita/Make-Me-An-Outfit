@@ -8,6 +8,7 @@ import OutfitEdit from './components/OutfitEdit';
 import OutfitList from './components/OutfitList';
 import OutfitUpload from './components/OutfitUpload';
 import Header from './components/Header';
+// import Carousel from './components/Carousel';
 
 import { Route, Redirect, Switch } from 'react-router-dom';
 
@@ -70,6 +71,7 @@ class App extends Component {
     var formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+          console.log(formData);
 
     axios({
       url: CLOUDINARY_URL,
@@ -79,15 +81,29 @@ class App extends Component {
       },
       data: formData
     })
-    .then(res => {
-      // console.log(res);
 
-      this.setState({ imgPreview: res.data.secure_url });
-    })
-    .catch(err => {
-      console.error(err);
-    });
+      .then(res => {
+        console.log(res);
+        this.setState({ imgPreview: res.data.secure_url });
+
+    //   axios({
+    //     url: CLOUDINARY_URL,
+    //     method: "POST",
+    //     headers: {
+    //       'Content-Type' : 'application/x-www-form-urlencoded'
+    //     },
+    //      data: //res.data.secure_url
+    //    })
+    //  })
+
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
+
+
+
 
 
   render() {
@@ -115,7 +131,7 @@ class App extends Component {
             <Redirect to= '/' />
           </Switch>
         </main>
-        <div>
+        <div className="RenderTest">
 
         </div>
       </div>
@@ -127,3 +143,4 @@ export default App;
 
 
 // <OutfitList / >
+// <Carousel />
