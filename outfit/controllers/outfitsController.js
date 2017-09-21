@@ -1,4 +1,4 @@
-const Outfit = require('../models/outfit');
+const Outfit = require('../models/outfit-model');
 
 const outfitsController = {};
 
@@ -21,7 +21,7 @@ outfitsController.show = (req,res) => {
   .then(outfit => {
     res.json({
       message: 'ok',
-      data: { tweed },
+      data: { outfit },
     });
   })
   .catch(err => {
@@ -35,7 +35,10 @@ outfitsController.create = (req, res) => {
     outfit: req.body.outfit,
   })
   .then(outfit => {
-    res.json({message: 'ok', data: { outfit }});
+    res.json({
+      message: 'ok',
+      data: { outfit }
+    });
   })
   .catch(err => {
     console.log(err);
@@ -43,13 +46,16 @@ outfitsController.create = (req, res) => {
   });
 };
 
+//THIS NEEDS TO CHANGE
 outfitsController.edit = (req, res) => {
   Outfit.findById(req.params.id)
   .then(outfit => {
-    res.render('#', {
-      data: outfit,
+    res.json({
+      message: 'ok',
+      data: { outfit }
     });
-  }).catch(err => {
+    })
+  .catch(err => {
     console.log(err);
     res.status(500).json(err);
   });
@@ -58,25 +64,29 @@ outfitsController.edit = (req, res) => {
 //THIS NEEDS TO CHANGE
 outfitsController.update = (req, res) => {
   Outfit.update({
-    photo: req.body.photo,
-    location: req.body.location,
-    status: req.body.status,
-    comments: req.body.comments,
-    type: req.body.type,
-}, req.params.id).then(gram => {
-    res.redirect('#');
+    outfit: req.body.outfit,
+  }, req.params.id)
+    .then(outfit => {
+    res.json({
+      message: 'ok',
+      data: { outfit }
+    });
     })
-  .catch(err => {
+    .catch(err => {
     console.log(err);
     res.status(500).json(err);
   });
 };
 
+//THIS NEEDS TO CHANGE
 outfitsController.delete = (req, res) => {
   Outfit.delete(req.params.id)
-  .then(() => {
-    res.redirect('#');
-  })
+  .then(outfit => {
+    res.json({
+      message: 'ok',
+      data: { outfit }
+    });
+    })
   .catch(err => {
     console.log(err);
     res.status(500).json(err);

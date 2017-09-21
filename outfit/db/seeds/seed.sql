@@ -3,47 +3,53 @@
 
 INSERT INTO tops(top_url) VALUES
 (
-'http:'
+'http: top 1'
 ),
 (
-'http:'
-),
-
-(
-'http:'
-
+'http: top 2'
 ),
 
 (
-'http:'
+'http: top 3'
 
 ),
 
 (
-'http:'
+'http: top 4'
+
+),
+
+(
+'http: top 5'
 
 );
 
 INSERT INTO bottoms(bottom_url) VALUES
 
 (
-'http:'
+'http: bottom 1'
 ),
 (
-'http:'
-),
-
-(
-'http:'
-
+'http: bottom 2'
 ),
 
 (
-'http:'
+'http: bottom 3'
 
 ),
 
 (
-'http:'
+'http: bottom 4'
+
+),
+
+(
+'http: bottom 5'
 
 );
+
+INSERT INTO users(name, password)VALUES
+('name', 'hahahahahahaha');
+
+INSERT INTO outfits(topsIDs, bottomsIDs, user_id)VALUES
+(1 , 2, 1);
