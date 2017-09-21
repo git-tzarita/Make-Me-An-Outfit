@@ -1,55 +1,36 @@
-\c makeoutfit_db
+\c outfit_app
 
-INSERT INTO tops(top_url) VALUES
-(
-'http://res.cloudinary.com/ga-mao/image/upload/v1505864889/top-1_uvkwlt.jpg'
-),
-(
-'http://res.cloudinary.com/ga-mao/image/upload/v1505864889/top-2_f9sqwb.jpg'
-),
-(
-'http://res.cloudinary.com/ga-mao/image/upload/v1505864889/top-3_jk0tzw.jpg'
-),
+INSERT INTO users (name)
+VALUES ('Jason'), ('Aileen'), ('Joe');
 
-(
-'http:://res.cloudinary.com/ga-mao/image/upload/v1505864890/top-4_gyjyzy.jpg'
-),
-(
-'http://res.cloudinary.com/ga-mao/image/upload/v1505864889/top-5_atiwtz.jpg'
-),
-(
-'http://res.cloudinary.com/ga-mao/image/upload/v1505864889/top-6_ht76zw.jpg'
-);
+INSERT INTO types (name)
+VALUES ('top'),
+('romper'),
+('pants'),
+('shorts'),
+('scarf'),
+('jumpers');
 
-INSERT INTO bottoms(bottom_url) VALUES
-(
-'http://res.cloudinary.com/ga-mao/image/upload/v1505864890/bottom-1_cv0ejb.jpg'
-),
-(
-'http://res.cloudinary.com/ga-mao/image/upload/v1505864889/bottom-2_lrthc0.jpg'
-),
+INSERT INTO clothing (url, name, description, type_id, user_id)
+VALUES
+( 'http://e', 'jeans', 'my jeans', 3, 1),
+( 'http://e', 'frilly top', 'my favorite shirt', 1, 2),
+( 'http://e', 'jorts', 'my jean shorts', 4, 3),
+( 'http://e', 'polo', 'my polo', 1, 1),
+( 'http://e', 'jeans', 'black jeans', 3, 2);
 
-(
-'http://res.cloudinary.com/ga-mao/image/upload/v1505864889/bottom-3_fucfio.jpg'
-),
-(
-'http://res.cloudinary.com/ga-mao/image/upload/v1505864889/bottom-4_amlczs.jpg'
-),
-(
-'http:://res.cloudinary.com/ga-mao/image/upload/v1505864890/bottom-5_nk4fcs.jpg'
-),
-(
-'http://res.cloudinary.com/ga-mao/image/upload/v1505864890/bottom-6_rcsfer.jpg'
-);
+INSERT INTO outfits (user_id)
+VALUES
+(1),
+(2),
+(3);
 
-INSERT INTO outfits(top_id,bottoms_id) VALUES
-(
-2,
-4
-);
+INSERT INTO outfit_items (outfit_id, clothing_id)
+VALUES
+(1, 1),
+(1, 4),
+(2, 2),
+(2, 5),
+(3, 3);
 
-INSERT INTO users(name, password)VALUES
-('name', 'hahahahahahaha');
 
-INSERT INTO outfits(topsIDs, bottomsIDs, user_id)VALUES
-(1 , 2, 1);

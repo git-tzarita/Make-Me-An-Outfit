@@ -4,15 +4,36 @@ const pgp = require('pg-promise')();
 const Outfit = {};
 
 Outfit.findAll = () => {
-  return db.query(`
-    SELECT tops.top_url, bottoms.bottom_url
-    FROM tops INNER JOIN outfits
-    ON tops.id = outfits.topsids
-    INNER JOIN bottoms
-    ON bottoms.id = outfits.bottomsids;
-    `);
+ return db.many(`
+  SELECT
+  oi.*,
+  c.url,
+  c.name,
+  c.description
+FROM outfits AS o
+JOIN outfit_items oi
+  ON (o.id = oi.outfit_id)
+JOIN clothing c
+  ON (oi.clothing_id = c.id)
+JOIN types t
+  ON (c.type_id = t.id)
+WHERE outfits.user_id = $1;
+
+ `, [outfits.user_id]);
 };
 
+
+   // SELECT
+   //  tops.top_url,
+   //  bottoms.bottom_url,
+   //  outfits.id
+   // FROM tops, bottoms
+   // INNER JOIN outfits
+   //  ON tops.id = outfits.topsids
+   //  AND bottoms.id = outfits.bottomsids
+   //  AND tops.user_id = bottoms.user_id
+   // WHERE tops.user_id = $1;
+   // `, 1);
 //FIND BY USER:
 // Outfit.findAll = () => {
 //   return db.query(`
@@ -56,10 +77,21 @@ Outfit.findbyId = (id) => {
 //     `, [id]);
 // };
 
+Outfit.upload = (outfits) => {
+  return db.one(`
+    INSERT INTO clothes
+    (clothes_url, clothes_type)
+    VALUES ($1, $2)`,
+    [outfits.clothes_url, outfits.clothes_type]
+    )
+}
+
 // HOW DO I STORE THIS TO OUTFITS AND USER
 Outfit.create = outfits => {
   return db.one(`
-    INSERT INTO tops
+    INSERT INTO outfits
+
+
     (top_url)
     VALUES ($1)
     RETURNING tops.id`,
