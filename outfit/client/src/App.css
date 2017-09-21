@@ -48,6 +48,8 @@ nav ul li a:hover {
   text-decoration: none;
 }
 
-.propstest{
-background-color: yellow;
+.file-upload-container img{
+  cursor: pointer;
+  margin: 2em;
 }
+

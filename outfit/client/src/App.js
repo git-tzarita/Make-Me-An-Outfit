@@ -2,13 +2,11 @@ import React, { Component } from 'react';
 import { Navbar, Jumbotron, Button } from 'react-bootstrap';
 import { Image } from 'cloudinary-react';
 import axios from 'axios';
-
-
 import './App.css';
 
 import OutfitEdit from './components/OutfitEdit';
-import OutfitUpload from './components/OutfitUpload';
 import OutfitList from './components/OutfitList';
+import OutfitUpload from './components/OutfitUpload';
 import Header from './components/Header';
 
 import { Route, Redirect, Switch } from 'react-router-dom';
@@ -25,6 +23,21 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  /* triggered before rendering, but will be overrritten by "didMount" */
+  componentWillMount() {
+    console.log('APP will mount');
+  }
+
+
+  /*
+  is rendered last right before rendering
+  hence we should do last state manipulations here
+  */
+  componentDidMount() {
+    console.log('APP did mount');
+  }
+
 
   handleChange(e){
     if (e.currentTarget.files.length === 1) {
@@ -46,6 +59,7 @@ class App extends Component {
     }
   }
 
+//on submit
   handleSubmit(e){
     e.preventDefault();
 
@@ -79,14 +93,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Header />
         <div className="App-header">
           <h2>Make Me a Outfit</h2>
         </div>
-        <Header />
         <main>
           <Switch>
             <Route path='/OutfitEdit' component={OutfitEdit} />
             <Route path='/OutfitList' component={OutfitList} />
+
             <Route path='/OutfitUpload' render={(props) =>
               (
                 <OutfitUpload
@@ -100,8 +115,8 @@ class App extends Component {
             <Redirect to= '/' />
           </Switch>
         </main>
-        <div className="propstest">
-          <OutfitList / >
+        <div>
+
         </div>
       </div>
     );
@@ -109,3 +124,6 @@ class App extends Component {
 }
 
 export default App;
+
+
+// <OutfitList / >
