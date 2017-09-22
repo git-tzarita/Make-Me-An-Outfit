@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
-import { Navbar, Jumbotron, Button } from 'react-bootstrap';
+// import { Navbar, Jumbotron, Button } from 'react-bootstrap';
 import { Image } from 'cloudinary-react';
 import axios from 'axios';
 import './App.css';
-import Authen from './Authen';
 
 import OutfitEdit from './components/OutfitEdit';
 import OutfitList from './components/OutfitList';
 import OutfitUpload from './components/OutfitUpload';
 import Header from './components/Header';
-// import Carousel from './components/Carousel';
+import Carousel from './components/Carousel';
 
 import { Route, Redirect, Switch } from 'react-router-dom';
-// var Carousel = require('react-responsive-carousel').Carousel;
 
 class App extends Component {
   constructor(){
@@ -26,13 +24,13 @@ class App extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
   /* triggered before rendering, but will be overrritten by "didMount" */
   componentWillMount() {
     console.log('APP will mount');
   }
-
 
   /*
   is rendered last right before rendering
@@ -41,6 +39,7 @@ class App extends Component {
   componentDidMount() {
     console.log('APP did mount');
     this.getDataFromDB();
+
   }
 
 
@@ -85,10 +84,11 @@ class App extends Component {
       data: formData
     })
     .then(res => {
-      this.setState({ imgPreview: res.data.secure_url });
-
       // THIS FUNCTION WILL SUBMIT URL TO DATABASE
       this.sendToDB(res.data.secure_url);
+    })
+    .then(res => {
+      this.setState({ imgPreview: res.data.secure_url });
     })
     .catch(err => {
       console.error(err);
@@ -113,7 +113,7 @@ class App extends Component {
   sendToDB(url){
     axios({
       method: 'POST',
-      url: '', // ENDPOINT WHERE THIS URL IS GOING
+      url: 'CLOUDINARY_URL', // ENDPOINT WHERE THIS URL IS GOING
       data: {
         url: url
       }
@@ -124,6 +124,31 @@ class App extends Component {
     .catch(err => console.error(err));
   }
 
+  handleLogin(user,pswd) {
+    console.log(user,pswd);
+    axios({
+      method: 'GET',
+      url: 'http://localhost:3001/login'
+    })
+    //.then(res => {
+      //if(res.data.data === user && res.data.data===pswd)
+      // if response from server confirms users exists AND password is correct
+      //this.setState({db:res.data.data})
+      // it should send the user id
+    //})
+    //.then(res => {
+      // then another axios call to DB to pull all their clothes based on user id
+     // axios({
+       // method:'POST',
+        //url:'http://localhost:3001/login'
+        // make axios call here
+      //}).then(res => {
+        // then set state with user ID, Name, and outfies
+        //this.setState()
+      //})
+    //})
+  }
+
   render() {
     return (
       <div className="App">
@@ -132,6 +157,7 @@ class App extends Component {
           <h2>Make Me a Outfit</h2>
         </div>
         <main>
+        <Carousel />
           <Switch>
             <Route path='/OutfitEdit' component={OutfitEdit} />
             <Route path='/OutfitList' component={(props) => <OutfitList {...props} data={this.state.data} />} />
@@ -150,11 +176,12 @@ class App extends Component {
           </Switch>
         </main>
 
-        </div>
-        <Authen />
+
         <button onClick= {this.handleOnClick}> Edit Outfit</button>
 
-      </div>
+        <Authen handleLogin={this.handleLogin} />
+
+    </div>
     );
   }
 }

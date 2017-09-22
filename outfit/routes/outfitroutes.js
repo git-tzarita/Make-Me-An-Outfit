@@ -12,4 +12,5 @@ outfitRoutes.put('/:id', outfitsController.update);
 outfitRoutes.get('/', outfitsController.index);
 outfitRoutes.post('/', outfitsController.create);
 
+
 module.exports = outfitRoutes;

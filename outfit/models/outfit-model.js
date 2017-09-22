@@ -37,7 +37,11 @@ Outfit.findAll = (user_id) => {
 //  `, [outfits.user_id]);
 // };
 
-Outfit.findById = (id) => {
+// Outfit.findAll = () => {
+//   return db.many(`SELECT * FROM clothing`);
+// }
+
+Outfit.findbyId = (id) => {
   return db.oneOrNone(`
     SELECT
       oi.*,
