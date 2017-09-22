@@ -1,6 +1,7 @@
 const express = require('express');
 const outfitsController = require('../controllers/outfitsController');
 const outfitRoutes = express.Router();
+outfitRoutes.get('/test', outfitsController.create);
 
 outfitRoutes.get('/:id/edit', outfitsController.edit);
 

@@ -3,7 +3,6 @@
 DROP DATABASE outfit_app;
 CREATE DATABASE outfit_app;
 
-
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name VARCHAR(128),
@@ -31,7 +30,7 @@ CREATE TABLE outfits (
 );
 
 CREATE TABLE outfit_items (
-  outfit_id INTEGER REFERENCES outfits,
+  outfit_id INTEGER REFERENCES outfits ON DELETE CASCADE,
   clothing_id INTEGER REFERENCES clothing,
   PRIMARY KEY(outfit_id, clothing_id)
 );
