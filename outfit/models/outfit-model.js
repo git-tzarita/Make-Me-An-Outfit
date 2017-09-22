@@ -3,116 +3,78 @@ const pgp = require('pg-promise')();
 
 const Outfit = {};
 
-Outfit.findAll = () => {
+Outfit.findAll = (user_id) => {
  return db.many(`
-  SELECT
-  oi.*,
-  c.url,
-  c.name,
-  c.description
-FROM outfits AS o
-JOIN outfit_items oi
-  ON (o.id = oi.outfit_id)
-JOIN clothing c
-  ON (oi.clothing_id = c.id)
-JOIN types t
-  ON (c.type_id = t.id)
-WHERE outfits.user_id = $1;
-
+    SELECT
+      oi.*,
+      c.url,
+      c.name,
+      c.description
+    FROM outfits AS o
+    JOIN outfit_items oi
+      ON (o.id = oi.outfit_id)
+    JOIN clothing c
+      ON (oi.clothing_id = c.id)
+    JOIN types t
+      ON (c.type_id = t.id)
+    WHERE outfits.user_id = $1;
  `, [outfits.user_id]);
 };
 
 
-   // SELECT
-   //  tops.top_url,
-   //  bottoms.bottom_url,
-   //  outfits.id
-   // FROM tops, bottoms
-   // INNER JOIN outfits
-   //  ON tops.id = outfits.topsids
-   //  AND bottoms.id = outfits.bottomsids
-   //  AND tops.user_id = bottoms.user_id
-   // WHERE tops.user_id = $1;
-   // `, 1);
-//FIND BY USER:
-// Outfit.findAll = () => {
-//   return db.query(`
-// SELECT tops.top_url, bottoms.bottom_url
-// FROM tops INNER JOIN outfits
-// ON tops.id = outfits.topsids
-// INNER JOIN bottoms
-// ON bottoms.id = outfits.bottomsids
-// INNER JOIN users
-// ON users.id = outfits.user_id
-// WHERE users.id = $1
-//     `);
-// };
-
-
 Outfit.findbyId = (id) => {
   return db.oneOrNone(`
-    SELECT tops.top_url, bottoms.bottom_url
-    FROM tops INNER JOIN outfits
-    ON tops.id = outfits.topsids
-    INNER JOIN bottoms
-    ON bottoms.id = outfits.bottomsids
-    INNER JOIN users
-    ON users.id = outfits.user_id
-    WHERE outfits.id = $1
+    SELECT
+      oi.*,
+      c.url,
+      c.name,
+      c.description
+    FROM outfits AS o
+    JOIN outfit_items oi
+      ON (o.id = oi.outfit_id)
+    JOIN clothing c
+      ON (oi.clothing_id = c.id)
+    JOIN types t
+      ON (c.type_id = t.id)
+    WHERE outfits.user_id = $1
+      AND o.id = $2
     `, [id]);
 };
 
-// FIND BY USER ID
-// Outfit.findbyId = (id) => {
-//   return db.oneOrNone(`
-//     SELECT tops.top_url, bottoms.bottom_url
-//     FROM tops INNER JOIN outfits
-//     ON tops.id = outfits.topsids
-//     INNER JOIN bottoms
-//     ON bottoms.id = outfits.bottomsids
-//     INNER JOIN users
-//     ON users.id = outfits.user_id
-//     WHERE outfits.id = $1
-//     AND users.id = $2
-//     `, [id]);
-// };
+
 
 Outfit.upload = (outfits) => {
   return db.one(`
-    INSERT INTO clothes
-    (clothes_url, clothes_type)
-    VALUES ($1, $2)`,
-    [outfits.clothes_url, outfits.clothes_type]
+    INSERT INTO clothing
+      (url, name, description, type_id, user_id)
+    VALUES ($1, $2, $3, $4, $5)`,
+    [clothing.url, clothing.name, clothing.description, clothing.type_id, clothing.user_id]
     )
 }
 
 // HOW DO I STORE THIS TO OUTFITS AND USER
 Outfit.create = outfits => {
+  console.log('I am here')
   return db.one(`
     INSERT INTO outfits
-
-
-    (top_url)
+      (user_id)
     VALUES ($1)
-    RETURNING tops.id`,
-    [outfits.top_url]
+    RETURNING id`,
+    [id]
     )
-  .then(() => {
+  .then((id) => {
     console.log(id);
     return db.one(`
-      INSERT INTO bottoms
-      (bottom_url)
-      VALUES ($2)
-      RETURNING bottoms.id`,
-      [outfits.bottom_url]
+      INSERT INTO outfit_items
+      (outfit_id)
+      VALUES ($2)`,
     )}
     )
-  .then(() => {
+  .then((outfits) => {
     return db.one(`
-      INSERT INTO outfits
-      (topsids, bottomsids)
-      VALUES (tops.id, bottoms.id)`,
-      [outfits.topsids, outfits.bottomsids]
+      INSERT INTO outfit_items
+      (clothing_id)
+      VALUES ($3)`,
     )
   })
 }
@@ -227,7 +189,6 @@ Outfit.delete = (id) => {
     DELETE FROM bottoms
     WHERE id = $1
     `, [id])
-
   });
 };
 
