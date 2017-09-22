@@ -7,11 +7,10 @@ class Authen extends Component{
     this.handlelogin = this.handlelogin.bind(this);
   }
 
-  handleLogin(event){
+  handlelogin(event){
     const username = this.refs.username.value;
     const password = this.refs.password.value;
-    //this.props.handleLogin(user,pswd)
-
+    this.props.handleLogin(username,password);
   }
 
 render(){

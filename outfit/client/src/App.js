@@ -131,23 +131,23 @@ class App extends Component {
       method: 'GET',
       url: 'http://localhost:3001/login'
     })
-    //.then(res => {
-      //if(res.data.data === user && res.data.data===pswd)
-      // if response from server confirms users exists AND password is correct
-      //this.setState({db:res.data.data})
+    .then(res => {
+      if(res.data.data === user && res.data.data===pswd)
+       //if response from server confirms users exists AND password is correct
+       this.setState({db:res.data.data})
       // it should send the user id
-    //})
-    //.then(res => {
+    })
+    .then(res => {
       // then another axios call to DB to pull all their clothes based on user id
-     // axios({
-       // method:'POST',
-        //url:'http://localhost:3001/login'
+      axios({
+        method:'POST',
+        url:'http://localhost:3001/login'
         // make axios call here
-      //}).then(res => {
+      }).then(res => {
         // then set state with user ID, Name, and outfies
-        //this.setState()
-      //})
-    //})
+        this.setState()
+      })
+    })
   }
 
   render() {
