@@ -1,6 +1,6 @@
 import React from 'react';
 import Slider from 'react-image-slider';
-import OutfitList from './OutfitList';
+
 
 export default React.createClass({
   render() {
