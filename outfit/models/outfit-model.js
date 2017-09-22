@@ -168,14 +168,9 @@ Outfit.update = (outfits, id) => {
 
 Outfit.delete = (id) => {
   return db.none(`
-    DELETE FROM outfits AS o
-    JOIN outfit_items oi
-      ON (o.id = oi.outfit_id)
-    JOIN clothing c
-      ON (oi.clothing_id = c.id)
-    JOIN types t
-      ON (c.type_id = t.id)
-    WHERE id = $1;
+    DELETE
+    FROM outfits
+    WHERE id = 1;
  `, [id])
 };
 
