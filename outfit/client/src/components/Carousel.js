@@ -26,7 +26,7 @@ class Carousel extends Component {
 
 
 
-ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
+// ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
 
 
 // export default Carousel;

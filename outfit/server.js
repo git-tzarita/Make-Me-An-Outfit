@@ -3,7 +3,9 @@ const path = require('path');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const app = express();
+const cors = require('cors');
 
+app.use(cors())
 app.use('/static', express.static(path.join(__dirname, 'public')));
 
 app.use(logger('dev'));
