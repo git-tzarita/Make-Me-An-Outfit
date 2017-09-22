@@ -53,3 +53,7 @@ nav ul li a:hover {
   margin: 2em;
 }
 
+img {
+  max-width: 400px;
+}
+

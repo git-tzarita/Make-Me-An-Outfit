@@ -186,7 +186,6 @@ Outfit.delete = (id) => {
     DELETE FROM bottoms
     WHERE id = $1
     `, [id])
-
   });
 };
 

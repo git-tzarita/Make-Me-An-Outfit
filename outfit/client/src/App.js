@@ -11,6 +11,7 @@ import Header from './components/Header';
 // import Carousel from './components/Carousel';
 
 import { Route, Redirect, Switch } from 'react-router-dom';
+// var Carousel = require('react-responsive-carousel').Carousel;
 
 class App extends Component {
   constructor(){
@@ -18,7 +19,8 @@ class App extends Component {
 
     this.state = {
       image: null,
-      imgPreview: null
+      imgPreview: null,
+      data: [] // DATA FROM SERVER
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -37,6 +39,7 @@ class App extends Component {
   */
   componentDidMount() {
     console.log('APP did mount');
+    this.getDataFromDB();
   }
 
 
@@ -71,7 +74,6 @@ class App extends Component {
     var formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-          console.log(formData);
 
     axios({
       url: CLOUDINARY_URL,
@@ -81,30 +83,45 @@ class App extends Component {
       },
       data: formData
     })
+    .then(res => {
+      this.setState({ imgPreview: res.data.secure_url });
 
-      .then(res => {
-        console.log(res);
-        this.setState({ imgPreview: res.data.secure_url });
-
-    //   axios({
-    //     url: CLOUDINARY_URL,
-    //     method: "POST",
-    //     headers: {
-    //       'Content-Type' : 'application/x-www-form-urlencoded'
-    //     },
-    //      data: //res.data.secure_url
-    //    })
-    //  })
-
-      })
-      .catch(err => {
-        console.error(err);
-      });
+      // THIS FUNCTION WILL SUBMIT URL TO DATABASE
+      this.sendToDB(res.data.secure_url);
+    })
+    .catch(err => {
+      console.error(err);
+    });
   }
 
+  // THIS FUNCTION IS RESPONSIBLE FOR GETTING INFORMATION FROM THE DATABASE
+  getDataFromDB(){
+    axios({
+      method: 'GET',
+      url: 'http://localhost:3001/api/outfits', // ENDPOINT TO GET INFORMATION
+    })
+    .then(res => {
+      console.log(res);
+      // SET STATE WITH INFORMATION YOU RECEIVED
+      this.setState({ data: res.data.data })
+    })
+    .catch(err => console.error(err));
+  }
 
-
-
+  // THIS FUNCTION WILL SEND URL FROM CLOUDINARY TO DATABASE
+  sendToDB(url){
+    axios({
+      method: 'POST',
+      url: '', // ENDPOINT WHERE THIS URL IS GOING
+      data: {
+        url: url
+      }
+    })
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => console.error(err));
+  }
 
   render() {
     return (
@@ -116,7 +133,7 @@ class App extends Component {
         <main>
           <Switch>
             <Route path='/OutfitEdit' component={OutfitEdit} />
-            <Route path='/OutfitList' component={OutfitList} />
+            <Route path='/OutfitList' component={(props) => <OutfitList {...props} data={this.state.data} />} />
 
             <Route path='/OutfitUpload' render={(props) =>
               (
@@ -131,9 +148,8 @@ class App extends Component {
             <Redirect to= '/' />
           </Switch>
         </main>
-        <div className="RenderTest">
 
-        </div>
+        <button onClick= {this.handleOnClick}> Edit Outfit</button>
       </div>
     );
   }
