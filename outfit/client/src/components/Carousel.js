@@ -1,32 +1,26 @@
-import React, { Component } from 'react';
-var ReactDOM = require('react-dom');
-var Carousel = require('react-responsive-carousel').Carousel;
+import React from 'react';
+import Slider from 'react-image-slider';
 
 
-class Carousel extends Component {
+export default React.createClass({
   render() {
-        return (
-            <Carousel axis="horizontal|vertical" showThumbs={true|false} showArrows={true|false} onChange={onChange} onClickItem={onClickItem} onClickThumb={onClickThumb} dynamicHeight emulateTouch>
-                <div>
-                    <img src="assets/1.jpeg" />
-                    <p className="legend">Legend 1</p>
-                </div>
-                <div>
-                    <img src="assets/2.jpeg" />
-                    <p className="legend">Legend 2</p>
-                </div>
-                <div>
-                    <img src="assets/3.jpeg" />
-                    <p className="legend">Legend 3</p>
-                </div>
-            </Carousel>
-        );
-    }
-}
+    const images = [
+      '//placehold.it/600/1abc9c',
+      '//placehold.it/600/3498db',
+      '//placehold.it/600/2ecc71',
+      '//placehold.it/600/9b59b6',
+      '//placehold.it/600/f1c40f',
+      '//placehold.it/600/e74c3c',
+      '//placehold.it/600/e67e22',
+    ];
+
+    return (
+      <Slider images={images} isInfinite delay={5000}>
+        {images.map((image, key) => <div key={key}><img src={image} /></div>)}
+      </Slider>
+    );
+  }
+});
 
 
 
-// ReactDOM.render(<DemoCarousel />, document.querySelector('.demo-carousel'));
-
-
-// export default Carousel;

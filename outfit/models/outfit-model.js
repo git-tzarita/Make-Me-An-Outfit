@@ -16,10 +16,12 @@ Outfit.findAll = (user_id) => {
     JOIN clothing c
       ON (oi.clothing_id = c.id)
     JOIN types t
-      ON (c.type_id = t.id)
-    WHERE outfits.user_id = $1;
- `, [outfits.user_id]);
+      ON (c.type_id = t.id)`);
 };
+
+// Outfit.findAll = () => {
+//   return db.many(`SELECT * FROM clothing`);
+// }
 
 Outfit.findbyId = (id) => {
   return db.oneOrNone(`
