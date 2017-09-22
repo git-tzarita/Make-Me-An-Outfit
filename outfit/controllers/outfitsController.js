@@ -31,11 +31,9 @@ outfitsController.show = (req,res) => {
 
 //THIS NEEDS TO CHANGE = req.body.outfit
 outfitsController.create = (req, res) => {
-  Outfit.create({
-    top: req.body.id,
-    bottom: req.body.id
-  })
+  Outfit.create(2, [3,7,1,4])
   .then(outfit => {
+
     res.json({
       message: 'ok',
       data: { outfit }

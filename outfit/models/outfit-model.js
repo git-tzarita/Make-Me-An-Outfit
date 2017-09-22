@@ -73,22 +73,50 @@ Outfit.findById = (id) => {
 //     [id]);
 // };
 
-Outfit.create = (outfits) => {
-  db.tx = outfits => {
-    const queries = [outfits.one('INSERT INTO outfits (user_id) VALUES ($1) RETURNING id', [id])
-    ];
-    for (let i=1; i<=2; i++) {
-      queries.push(outfits.one('INSERT INTO outfit_items (outfit_id, clothing_id) VALUES ($2, $3)', [outfit_id, clothing_id]));
-    }
-    return outfits.batch[queries]
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }
+Outfit.create = (userID, clothingIDs) => {
+  debugger;
+  const insertOutfits = async () => {
+    // get the new outfitID;
+    // userID --> outfitID
+    const outfitID = await db.one(`
+      INSERT INTO outfits (user_id)
+      VALUES ($1)
+      RETURNING id
+    `, userID);
+    const dataMulti = clothingIDs.map((itemID) => {
+      return {
+        outfit_id: outfitID,
+        clothing_id: itemID,
+      };
+    });
+    const cs = new pgp.helpers.ColumnSet(['outfit_id', 'clothing_id'], {table:'outfit_items'})
+    await pgp.helpers.insert(dataMulti, cs);
+    return outfitID;
+  };
+  return insertOutfits();
+  //return db.tx(insertOutfits)
 }
+
+
+
+
+  // db.tx = t => {
+  //   const queries = [
+
+  //     ];
+  //   for (let i=1; i<=2; i++) {
+  //     queries.push(
+  //       outfits.one('INSERT INTO outfit_items (outfit_id, clothing_id) VALUES ($2, $3)', [outfit_id, clothing_id]));
+  //   }
+  //   return outfits.batch[queries]
+  //   .then((data) => {
+  //     console.log(data);
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   })
+  // }
+
 
 // Outfit.create = (outfits) => {
 //   db.tx = outfits => {
@@ -138,39 +166,19 @@ Outfit.create = (outfits) => {
 Outfit.update = (outfits, id) => {
   return db.one(
     `
-    UPDATE tops SET
-    top_url = $1
-    WHERE tops.id = $2
-    RETURNING *`,
-    [outfits.top_url, tops.id]
+    UPDATE outfit_items SET
+    outfit_id = $1,
+    clothing_id = $2
+    RETURNING *
+    `, outfit_items
     )
-  .then((outfits, id) => {
-    return db.one(
-    `
-    UPDATE bottoms SET
-    bottom_url = $3
-    WHERE bottoms.id = $4
-    RETURNING *`,
-    [outfits.bottom_url, bottoms.id]
-    )})
-  .then((outfits, id) => {
-    return db.one(
-    `
-    UPDATE outfits SET
-    topsids = $2
-    bottomsids = $4
-    WHERE outfits.id = $5
-    RETURNING *`,
-    [outfits.topsids, outfits.bottomsids, outfits.id]
-    )
-  });
 };
 
 Outfit.delete = (id) => {
   return db.none(`
     DELETE
     FROM outfits
-    WHERE id = 1;
+    WHERE id = $1;
  `, [id])
 };
 

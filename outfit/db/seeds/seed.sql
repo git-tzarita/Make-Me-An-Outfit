@@ -32,7 +32,8 @@ INSERT INTO outfits (user_id)
 VALUES
 (1),
 (2),
-(3);
+(3),
+(4);
 
 INSERT INTO outfit_items (outfit_id, clothing_id)
 VALUES
