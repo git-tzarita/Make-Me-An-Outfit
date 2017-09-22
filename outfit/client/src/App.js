@@ -3,6 +3,7 @@ import { Navbar, Jumbotron, Button } from 'react-bootstrap';
 import { Image } from 'cloudinary-react';
 import axios from 'axios';
 import './App.css';
+import Authen from './Authen';
 
 import OutfitEdit from './components/OutfitEdit';
 import OutfitList from './components/OutfitList';
@@ -134,6 +135,7 @@ class App extends Component {
         <div className="RenderTest">
 
         </div>
+        <Authen />
       </div>
     );
   }
