@@ -9,7 +9,7 @@ outfitRoutes.delete('/:id', outfitsController.delete);
 outfitRoutes.put('/:id', outfitsController.update);
 
 outfitRoutes.get('/', outfitsController.index);
-outfitRoutes.post('/',outfitsController.create);
+outfitRoutes.post('/', outfitsController.createOutfit, outfitsController.createOutfitItems);
 
 
 module.exports = outfitRoutes;

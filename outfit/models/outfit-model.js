@@ -21,7 +21,6 @@ Outfit.findAll = (user_id) => {
  `, [outfits.user_id]);
 };
 
-
 Outfit.findbyId = (id) => {
   return db.oneOrNone(`
     SELECT
@@ -40,8 +39,6 @@ Outfit.findbyId = (id) => {
       AND o.id = $2
     `, [id]);
 };
-
-
 
 Outfit.upload = (outfits) => {
   return db.one(`
