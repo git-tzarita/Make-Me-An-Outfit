@@ -3,16 +3,14 @@ import { Navbar, Jumbotron, Button } from 'react-bootstrap';
 import { Image } from 'cloudinary-react';
 import axios from 'axios';
 import './App.css';
-import Authen from './Authen';
 
 import OutfitEdit from './components/OutfitEdit';
 import OutfitList from './components/OutfitList';
 import OutfitUpload from './components/OutfitUpload';
 import Header from './components/Header';
-// import Carousel from './components/Carousel';
+import Carousel from './components/Carousel';
 
 import { Route, Redirect, Switch } from 'react-router-dom';
-// var Carousel = require('react-responsive-carousel').Carousel;
 
 class App extends Component {
   constructor(){
@@ -41,6 +39,7 @@ class App extends Component {
   componentDidMount() {
     console.log('APP did mount');
     this.getDataFromDB();
+
   }
 
 
@@ -113,7 +112,7 @@ class App extends Component {
   sendToDB(url){
     axios({
       method: 'POST',
-      url: '', // ENDPOINT WHERE THIS URL IS GOING
+      url: 'CLOUDINARY_URL', // ENDPOINT WHERE THIS URL IS GOING
       data: {
         url: url
       }
@@ -132,6 +131,7 @@ class App extends Component {
           <h2>Make Me a Outfit</h2>
         </div>
         <main>
+        <Carousel />
           <Switch>
             <Route path='/OutfitEdit' component={OutfitEdit} />
             <Route path='/OutfitList' component={(props) => <OutfitList {...props} data={this.state.data} />} />
@@ -149,11 +149,7 @@ class App extends Component {
             <Redirect to= '/' />
           </Switch>
         </main>
-
-        </div>
-        <Authen />
         <button onClick= {this.handleOnClick}> Edit Outfit</button>
-
       </div>
     );
   }
