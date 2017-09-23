@@ -26,7 +26,7 @@ CREATE TABLE clothing (
 CREATE TABLE outfits (
   id SERIAL PRIMARY KEY,
   user_id INTEGER REFERENCES users,
-  UNIQUE(id, user_id)
+  UNIQUE (id, user_id)
 );
 
 CREATE TABLE outfit_items (
