@@ -22,9 +22,25 @@ import { Link } from 'react-router-dom';
 
 
   onclickShuffle(event){
-    console.log('handling shuffle')
+  //   console.log('handling shuffle')
+  //     $slotImage.each( function(i,d) {
+  //     let random = Math.floor(Math.random() * slotElement.length)
+  //     $(d).attr("src", slotElement[random]);
+  //   })
+  // }
 
 
+
+}
+
+  renderOutfits(){
+    let images = this.props.data.map((outfit, index) => {
+      return (
+          <img src={outfit.url} key={index} />
+        );
+    });
+
+    return images;
   }
 
   onclickStop(){
@@ -49,6 +65,9 @@ import { Link } from 'react-router-dom';
           <li><Link to="/OutfitUpload">Upload a New Image</Link></li>
         </ul>
       </nav>
+      <Slider images={this.props.images} isInfinite delay={5000}>
+            {this.renderOutfits()}
+          </Slider>
         <h2>Home</h2>
         <div className="randomizeImg">
           <div className="randomImg"></div>

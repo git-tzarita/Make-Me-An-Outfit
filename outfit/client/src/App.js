@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Image } from 'cloudinary-react';
 import axios from 'axios';
 import './App.css';
-import Authen from './Authen';
+import Authen from './components/Authen';
 import './Carousel.css';
 
 import Header from './components/Header';
@@ -11,6 +11,7 @@ import OutfitHome from './components/OutfitHome';
 import OutfitEdit from './components/OutfitEdit';
 import OutfitList from './components/OutfitList';
 import OutfitUpload from './components/OutfitUpload';
+import Single from './components/single';
 
 import Carousel from './components/Carousel';
 import Slider from 'react-image-slider';
@@ -30,6 +31,7 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   /* triggered before rendering, but will be overrritten by "didMount" */
@@ -153,11 +155,14 @@ class App extends Component {
       })
     })
   }
+   handleClick(){
+    console.log(this.state.data)
+  }
 
   render() {
     return (
       <div className="App">
-
+<button onClick={this.handleClick}>state</button>
         <div className="App-header">
           <h2>Make Me a Outfit</h2>
           <Header />
@@ -166,6 +171,8 @@ class App extends Component {
           <Switch>
             <Route path='/OutfitEdit' component={(props) => <OutfitEdit {...props} data={this.state.data} />} />
             <Route path='/OutfitList' component={(props) => <OutfitList {...props} data={this.state.data} />} />
+            <Route path='/Auth' component={Authen} />
+            <Route path='/single/:id' component={Single} />
             <Route path='/OutfitUpload' render={(props) =>
               (
                 <OutfitUpload
