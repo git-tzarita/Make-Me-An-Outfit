@@ -3,6 +3,13 @@
 DROP DATABASE outfit_app;
 CREATE DATABASE outfit_app;
 
+
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS types;
+DROP TABLE IF EXISTS clothing;
+DROP TABLE IF EXISTS outfits;
+DROP TABLE IF EXISTS outfit_items;
+
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   name VARCHAR(128),

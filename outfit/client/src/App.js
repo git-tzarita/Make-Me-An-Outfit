@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Image } from 'cloudinary-react';
 import axios from 'axios';
 import './App.css';
+import Authen from './Authen';
 import './Carousel.css';
 
 import Header from './components/Header';

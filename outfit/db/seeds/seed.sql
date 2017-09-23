@@ -1,3 +1,4 @@
+
 \c outfit_app
 
 INSERT INTO users (name) VALUES
