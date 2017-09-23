@@ -30,7 +30,8 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
-   // this.handleClick = this.handleClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+
   }
 
   /* triggered before rendering, but will be overrritten by "didMount" */
@@ -155,16 +156,22 @@ class App extends Component {
       })
     })
   }
+  
+ PICK ONE OF THESE
+   handleClick(){
+    console.log(this.state.data)
+  }
+
   // handleClick(){
   //   this.setState({
   //     user:this.refs.username.value
   //   })
   // }
-
+  
   render() {
     return (
       <div className="App">
-
+<button onClick={this.handleClick}>state</button>
         <div className="App-header">
         <h1>{this.state.user}</h1>
           <h2>Make Me a Outfit</h2>
@@ -174,6 +181,7 @@ class App extends Component {
           <Switch>
             <Route path='/OutfitEdit' component={(props) => <OutfitEdit {...props} data={this.state.data} />} />
             <Route path='/OutfitList' component={(props) => <OutfitList {...props} data={this.state.data} />} />
+
             <Route path='/Auth' component={(props) => <Authen {...props} user={this.state.user} />}/>
             <Route path='/OutfitUpload' render={(props) =>
               (

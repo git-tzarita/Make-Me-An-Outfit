@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
-import axios from 'axios';
+
+impot axios from 'axios';
+
 
 class Authen extends Component{
   constructor(props){
     super(props);
+    
     this.state = {
       user:''
     };
@@ -50,16 +53,19 @@ class Authen extends Component{
   //   })
   // }
 
+
 render(){
   return (
     <div>
       <input id="username" ref="username" type="username" placeholder="Enter user name" /><br />
       <input id="pass" ref="password" type="password" placeholder="Enter Password" /><br />
 
+
       <button onClick={this.handleLogin}>Log In</button>
       <button>Sign Up</button>
       <button>Log out</button>
       <h1>{this.state.user}</h1>
+
 
     </div>
 
