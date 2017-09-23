@@ -78,7 +78,7 @@ Outfit.findbyId = (id) => {
 // };
 
 Outfit.create = (userID, clothingIDs) => {
-  debugger;
+  // debugger;
   const insertOutfits = async () => {
     // get the new outfitID;
     // userID --> outfitID
