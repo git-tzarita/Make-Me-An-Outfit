@@ -45,4 +45,4 @@ Mao - Cloudinary API/CSS/HTML
 MD - Databases/Node/Express  
 
 ### Deliverables and Time Spent on each ###
-[Project Board on GitHub](https://git.generalassemb.ly/aileenmwong/project-3/projects/1)
+[Project Board on GitHub](https://github.com/git-tzarita/Make-Me-An-Outfit/projects)
