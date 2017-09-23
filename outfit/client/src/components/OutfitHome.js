@@ -30,8 +30,8 @@ import { Link } from 'react-router-dom';
   // }
 
 
+  }
 
-}
 
   renderOutfits(){
     let images = this.props.data.map((outfit, index) => {
@@ -42,7 +42,6 @@ import { Link } from 'react-router-dom';
 
     return images;
   }
-
   onclickStop(){
 
   }
