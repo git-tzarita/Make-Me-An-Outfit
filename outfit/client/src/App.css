@@ -65,3 +65,6 @@ button{
   color:red;
 }
 
+#listview {
+  flex-direction: column;
+}

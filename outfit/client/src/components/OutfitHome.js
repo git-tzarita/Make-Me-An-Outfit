@@ -22,12 +22,16 @@ import { Link } from 'react-router-dom';
 
 
   onclickShuffle(event){
-    console.log('handling shuffle')
-
-
+  //   console.log('handling shuffle')
+  //     $slotImage.each( function(i,d) {
+  //     let random = Math.floor(Math.random() * slotElement.length)
+  //     $(d).attr("src", slotElement[random]);
+  //   })
+  // }
 
 
   }
+
 
   renderOutfits(){
     let images = this.props.data.map((outfit, index) => {
@@ -38,7 +42,6 @@ import { Link } from 'react-router-dom';
 
     return images;
   }
-
   onclickStop(){
 
   }

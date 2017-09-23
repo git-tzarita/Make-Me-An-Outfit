@@ -42,11 +42,12 @@ Outfit.findAll = (user_id) => {
 //   return db.many(`SELECT * FROM clothing`);
 // }
 
-Outfit.findbyId = (id) => {
-  return db.oneOrNone(`
+Outfit.findById = (id) => {
+  return db.any(`
     SELECT
       oi.*,
       c.url,
+      c.type_id,
       c.name,
       c.description
     FROM outfits AS o
@@ -96,7 +97,7 @@ Outfit.create = (userID, clothingIDs) => {
     });
     const cs = new pgp.helpers.ColumnSet(['outfit_id', 'clothing_id'], {table:'outfit_items'})
     const temp = await pgp.helpers.insert(dataMulti, cs);
-    return outfitID;
+    return outfitID, itemID;
   };
   return insertOutfits();
   //return db.tx(insertOutfits)

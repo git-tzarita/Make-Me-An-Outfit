@@ -5,11 +5,11 @@ class OutfitList extends Component {
 
   renderOutfits(){
     let images = this.props.data.map((outfit, index) => {
+      console.log(outfit);
       return (
           <img src={outfit.url} key={index} />
         );
     });
-
     return images;
   }
 

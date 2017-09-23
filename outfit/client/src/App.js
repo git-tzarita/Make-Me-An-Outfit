@@ -10,6 +10,7 @@ import OutfitHome from './components/OutfitHome';
 import OutfitEdit from './components/OutfitEdit';
 import OutfitList from './components/OutfitList';
 import OutfitUpload from './components/OutfitUpload';
+import Single from './components/single';
 
 import Carousel from './components/Carousel';
 import Slider from 'react-image-slider';
@@ -157,7 +158,6 @@ class App extends Component {
     })
   }
   
- PICK ONE OF THESE
    handleClick(){
     console.log(this.state.data)
   }
@@ -182,7 +182,10 @@ class App extends Component {
             <Route path='/OutfitEdit' component={(props) => <OutfitEdit {...props} data={this.state.data} />} />
             <Route path='/OutfitList' component={(props) => <OutfitList {...props} data={this.state.data} />} />
 
+            <Route path='/single/:id' component={Single} />
+
             <Route path='/Auth' component={(props) => <Authen {...props} user={this.state.user} />}/>
+
             <Route path='/OutfitUpload' render={(props) =>
               (
                 <OutfitUpload
