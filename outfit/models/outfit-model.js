@@ -8,6 +8,7 @@ Outfit.findAll = (user_id) => {
     SELECT
       oi.*,
       c.url,
+      c.type_id,
       c.name,
       c.description
     FROM outfits AS o
