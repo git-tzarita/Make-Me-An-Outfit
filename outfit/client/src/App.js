@@ -3,12 +3,16 @@ import React, { Component } from 'react';
 import { Image } from 'cloudinary-react';
 import axios from 'axios';
 import './App.css';
+import './Carousel.css';
 
+import Header from './components/Header';
+import OutfitHome from './components/OutfitHome';
 import OutfitEdit from './components/OutfitEdit';
 import OutfitList from './components/OutfitList';
 import OutfitUpload from './components/OutfitUpload';
-import Header from './components/Header';
+
 import Carousel from './components/Carousel';
+import Slider from 'react-image-slider';
 
 import { Route, Redirect, Switch } from 'react-router-dom';
 
@@ -152,16 +156,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
+
         <div className="App-header">
           <h2>Make Me a Outfit</h2>
+          <Header />
         </div>
         <main>
-        <Carousel />
           <Switch>
-            <Route path='/OutfitEdit' component={OutfitEdit} />
+            <Route path='/OutfitEdit' component={(props) => <OutfitEdit {...props} data={this.state.data} />} />
             <Route path='/OutfitList' component={(props) => <OutfitList {...props} data={this.state.data} />} />
-
             <Route path='/OutfitUpload' render={(props) =>
               (
                 <OutfitUpload
@@ -172,14 +175,11 @@ class App extends Component {
                 />
               )}
             />
+
+            <Route path='/' component={(props) => <OutfitHome {...props} data={this.state.data} />} />
             <Redirect to= '/' />
           </Switch>
         </main>
-
-
-        <button onClick= {this.handleOnClick}> Edit Outfit</button>
-
-        <Authen handleLogin={this.handleLogin} />
 
     </div>
     );

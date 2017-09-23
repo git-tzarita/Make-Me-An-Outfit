@@ -16,6 +16,7 @@ class OutfitUpload extends Component {
             <select name="Select Top or Bottom">
               <option value="Top">Top</option>
               <option value="Bottom">Bottom</option>
+              <option value="accessory">Accessory</option>
             </select>
           </label><br/>
 
