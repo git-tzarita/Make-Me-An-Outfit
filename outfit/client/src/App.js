@@ -3,9 +3,8 @@ import React, { Component } from 'react';
 import { Image } from 'cloudinary-react';
 import axios from 'axios';
 import './App.css';
-import Authen from './Authen';
 import './Carousel.css';
-
+import Authen from './components/Authen';
 import Header from './components/Header';
 import OutfitHome from './components/OutfitHome';
 import OutfitEdit from './components/OutfitEdit';
@@ -24,12 +23,14 @@ class App extends Component {
     this.state = {
       image: null,
       imgPreview: null,
+      user:'',
       data: [] // DATA FROM SERVER
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+   // this.handleClick = this.handleClick.bind(this);
   }
 
   /* triggered before rendering, but will be overrritten by "didMount" */
@@ -129,16 +130,17 @@ class App extends Component {
     .catch(err => console.error(err));
   }
 
-  handleLogin(user,pswd) {
-    console.log(user,pswd);
+  handleLogin(username,password) {
+
+    console.log(username,password);
     axios({
       method: 'GET',
       url: 'http://localhost:3001/login'
     })
     .then(res => {
-      if(res.data.data === user && res.data.data===pswd)
+      if(res.data.data === username && res.data.data===password)
        //if response from server confirms users exists AND password is correct
-       this.setState({db:res.data.data})
+       this.setState({user:res.data.data})
       // it should send the user id
     })
     .then(res => {
@@ -153,19 +155,26 @@ class App extends Component {
       })
     })
   }
+  // handleClick(){
+  //   this.setState({
+  //     user:this.refs.username.value
+  //   })
+  // }
 
   render() {
     return (
       <div className="App">
 
         <div className="App-header">
+        <h1>{this.state.user}</h1>
           <h2>Make Me a Outfit</h2>
-          <Header />
+                   <Header />
         </div>
         <main>
           <Switch>
             <Route path='/OutfitEdit' component={(props) => <OutfitEdit {...props} data={this.state.data} />} />
             <Route path='/OutfitList' component={(props) => <OutfitList {...props} data={this.state.data} />} />
+            <Route path='/Auth' component={(props) => <Authen {...props} user={this.state.user} />}/>
             <Route path='/OutfitUpload' render={(props) =>
               (
                 <OutfitUpload
@@ -181,6 +190,7 @@ class App extends Component {
             <Redirect to= '/' />
           </Switch>
         </main>
+
 
     </div>
     );
