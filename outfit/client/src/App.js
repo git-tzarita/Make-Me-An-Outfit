@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Image } from 'cloudinary-react';
 import axios from 'axios';
 import './App.css';
+import Authen from './Authen';
 
 import OutfitEdit from './components/OutfitEdit';
 import OutfitList from './components/OutfitList';

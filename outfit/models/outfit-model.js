@@ -94,7 +94,7 @@ Outfit.create = (userID, clothingIDs) => {
       };
     });
     const cs = new pgp.helpers.ColumnSet(['outfit_id', 'clothing_id'], {table:'outfit_items'})
-    await pgp.helpers.insert(dataMulti, cs);
+    const temp = await pgp.helpers.insert(dataMulti, cs);
     return outfitID;
   };
   return insertOutfits();
