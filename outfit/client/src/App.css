@@ -12,10 +12,35 @@
 
 .App-header {
   /*background-color: #222;*/
+  width: 100%;
   height: 150px;
   padding: 20px;
-  /*color: white;*/
+  font-family: 'Trocchi', serif;
+  margin: 0px;
+  padding: 0px;
 }
+
+.App-header h2 {
+  font-family: 'Pacifico', cursive;
+  font-size: 3.6em;
+  color: cornflowerblue;
+  display: inline-block;
+  float: left;
+
+
+}
+
+header ul {
+  display: inline-block;
+  padding-top: 1.5em;
+
+}
+
+header ul li {
+  vertical-align:sub;
+
+}
+
 
 .App-intro {
   font-size: large;

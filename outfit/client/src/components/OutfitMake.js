@@ -6,7 +6,7 @@ import Carousel from './Carousel';
 import { Link } from 'react-router-dom';
 
 
- class OutfitHome extends Component {
+ class OutfitMake extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -64,4 +64,4 @@ onclickStop(){
   }
 
 
-export default OutfitHome;
+export default OutfitMake;
