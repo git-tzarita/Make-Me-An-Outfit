@@ -47,8 +47,11 @@ renderOutfits(){
       console.log(outfit.url, array[index + 1].url)
     return (
         <div id="listOutfits">
-        <SingleList topurl={outfit.url} key={index} id={outfit.outfit_id}
-                bottomurl={array[index+1].url} />
+        <SingleList
+        topurl={outfit.url}
+        key={index}
+        id={outfit.outfit_id}
+        bottomurl={array[index+1].url} />
         </div>
     )}
       ;
@@ -78,7 +81,7 @@ renderOutfits(){
       <div>
         <div id="oufitListWrapper">
           <div id="outfitGrouped">
-            <button onClick= {this.handleOnClick}> Edit Outfit</button>
+            <button onClick= {this.handleOnClick}>View Outfit</button>
             <div id="listTop">
                 {this.renderOutfits()}
             </div>

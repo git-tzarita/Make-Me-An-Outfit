@@ -111,7 +111,7 @@ class App extends Component {
   getDataFromDB(){
     axios({
       method: 'GET',
-      url: 'http://localhost:3001/api/outfits', // ENDPOINT TO GET INFORMATION
+      url: '/api/outfits', // ENDPOINT TO GET INFORMATION
     })
     .then(res => {
       console.log(res);
@@ -125,7 +125,7 @@ class App extends Component {
   sendToDB(url){
     axios({
       method: 'POST',
-      url: 'http://localhost:3001/api/outfits', // ENDPOINT WHERE THIS URL IS GOING
+      url: '/api/outfits', // ENDPOINT WHERE THIS URL IS GOING
       data: {
         url: url
       }
@@ -141,7 +141,7 @@ class App extends Component {
 
     axios({
       method: 'GET',
-      url: 'http://localhost:3001/login',
+      url: '/login',
       params: {"username": username}
     })
     .then(res => {
@@ -214,8 +214,8 @@ class App extends Component {
                 />
               )}
             />
-
-            <Route path='/' component={(props) => <OutfitHome {...props} data={this.state.data} />} />
+            <Route path='/OutfitMake' component={(props) => <OutfitMake {...props} data={this.state.data} />} />
+            <Route path='/' component={(props) => <OutfitNewHome {...props} data={this.state.data} />} />
             <Redirect to= '/' />
 
           </Switch>
