@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-
-
 import axios from 'axios';
 
 
@@ -17,9 +15,12 @@ class Authen extends Component{
 
 
   handleLogin(user){
+
     const username = this.refs.username.value;
+
     const password = this.refs.password.value;
-    //this.props.handleLogin(username.password);
+    console.log("this is username", username)
+    this.props.handleLogin(username,password)
 
     this.setState({
       user:username,

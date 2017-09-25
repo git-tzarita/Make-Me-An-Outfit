@@ -42,6 +42,7 @@ Outfit.findAll = (user_id) => {
 //   return db.many(`SELECT * FROM clothing`);
 // }
 
+
 Outfit.findAllOutfits = (user_id) => {
  return db.many(`
     SELECT
@@ -60,7 +61,6 @@ Outfit.findAllOutfits = (user_id) => {
     WHERE o.id = oi.id
       `);
 };
-
 
 Outfit.findById = (id) => {
   return db.any(`
@@ -187,6 +187,23 @@ Outfit.create = (userID, clothingIDs) => {
 //   })
 // }
 
+// for Auth only
+Outfit.findByUserName= (userName) =>{
+  return db.one(`
+    SELECT * FROM users
+    WHERE username = $1
+    `, [userName]);
+}
+
+Outfit.create = user => {
+  return db.one(`
+    INSERT INTO users
+    (name,password)
+    VALUES ($1, $2)
+    RETURNING *
+
+      `[user.name,user.password]);
+};
 
 // HOW DO I STORE THIS TO USER
 Outfit.update = (outfits, id) => {

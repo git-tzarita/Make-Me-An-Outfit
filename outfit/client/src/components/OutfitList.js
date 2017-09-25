@@ -7,6 +7,7 @@ import axios from 'axios'
 
 class OutfitList extends Component {
 
+
 //TRY 1 - this renders all images, not sorted
 
 //   renderOutfits(){
@@ -70,6 +71,7 @@ renderOutfits(){
 //   });
 //   return images;
 // }
+
 
   render() {
     return (

@@ -47,6 +47,10 @@ render() {
     <div>
     <p>hello</p>
     </div>
+
+    // <div>{this.renderOutfit()}</div>
+
+
     )
 }
 
