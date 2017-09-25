@@ -7,7 +7,7 @@ class OutfitList extends Component {
     let images = this.props.data.map((outfit, index) => {
       console.log(outfit);
       return (
-          <img src={outfit.url} key={index} />
+          <img src={outfit.url} key={index} alt ="outfits"/>
         );
     });
     return images;

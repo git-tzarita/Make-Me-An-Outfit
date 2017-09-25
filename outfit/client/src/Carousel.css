@@ -61,12 +61,11 @@
 }
 
 .randomImg {
-  max-width: 400px;
+  /*max-width: 400px;
   height: 400px;
   overflow: hidden;
-  margin: .25em auto;
+  margin: .25em auto;*/
   /*border: 1px solid red;*/
-
 }
 
 /*arrow

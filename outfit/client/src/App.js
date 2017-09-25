@@ -7,13 +7,13 @@ import Authen from './components/Authen';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
-import OutfitHome from './components/OutfitHome';
+// import OutfitHome from './components/OutfitHome';
 import OutfitEdit from './components/OutfitEdit';
 import OutfitList from './components/OutfitList';
 import OutfitNewHome from './components/OutfitNewHome';
 import OutfitMake from './components/OutfitMake';
 import OutfitUpload from './components/OutfitUpload';
-import Slider from 'react-image-slider';
+// import Slider from 'react-image-slider';
 import './Carousel.css';
 import Single from './components/single';
 
@@ -125,7 +125,7 @@ class App extends Component {
   sendToDB(url){
     axios({
       method: 'POST',
-      url: 'CLOUDINARY_URL', // ENDPOINT WHERE THIS URL IS GOING
+      url: 'http://localhost:3001/api/outfits', // ENDPOINT WHERE THIS URL IS GOING
       data: {
         url: url
       }
@@ -174,6 +174,7 @@ class App extends Component {
             <Switch>
               <Route path='/OutfitEdit' component={(props) => <OutfitEdit {...props} data={this.state.data} />} />
               <Route path='/OutfitList' component={(props) => <OutfitList {...props} data={this.state.data} />} />
+              <Route exact path='/OutfitList/:id' component={Single} />
               <Route path='/Auth' component={Authen} />
               <Route path='/OutfitUpload' render={(props) =>
                 (
@@ -199,6 +200,4 @@ class App extends Component {
 
 export default App;
 
-// let onclick= event.target.value
-// // <OutfitList / >
-// // <Carousel />
+

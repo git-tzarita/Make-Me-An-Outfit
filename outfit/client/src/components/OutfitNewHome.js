@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Slider from 'react-image-slider';
-import { Image } from 'cloudinary-react';
-import axios from 'axios';
-import Carousel from './Carousel';
+// import Slider from 'react-image-slider';
+// import { Image } from 'cloudinary-react';
+// import axios from 'axios';
+// import Carousel from './Carousel';
 import { Link } from 'react-router-dom';
 
 

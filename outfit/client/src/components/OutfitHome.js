@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import Slider from 'react-image-slider';
-import { Image } from 'cloudinary-react';
-import axios from 'axios';
-import Carousel from './Carousel';
-import { Link } from 'react-router-dom';
+// import { Image } from 'cloudinary-react';
+// import axios from 'axios';
+// import Carousel from './Carousel';
+// import { Link } from 'react-router-dom';
 
 
  class OutfitHome extends Component {
   constructor(props){
     super(props);
 }
-    this.onclickStop = this.onclickStop.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
+    // this.onclickStop = this.onclickStop.bind(this);
 
 
 handleClick(){
@@ -20,14 +20,13 @@ handleClick(){
 
 
 onclickStop(){
-    console.log(this.state.data);
     this.setState({
     });
 
   }
 
 
-
+// mapping the database
   renderOutfits(){
     let images = this.props.data.map((outfit, index) => {
       return (
