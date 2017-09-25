@@ -9,21 +9,24 @@ import { Link } from 'react-router-dom';
  class OutfitHome extends Component {
   constructor(props){
     super(props);
-    this.state = {
-
-    }
-
+}
     this.onclickStop = this.onclickStop.bind(this);
-    // this.onclickSave = thisonclickSave.bind(this)
     this.handleClick = this.handleClick.bind(this);
 
+
+handleClick(){
+    console.log(this.state.data);
   }
 
 
 onclickStop(){
-    console.log("Hewll");
-    return null;
+    console.log(this.state.data);
+    this.setState({
+    });
+
   }
+
+
 
   renderOutfits(){
     let images = this.props.data.map((outfit, index) => {
@@ -34,29 +37,23 @@ onclickStop(){
     return images;
   }
 
-
-
-
-  handleClick(e){
-    console.log(e.target.data);
-    console.log(this.props.outfit);
-
-    }
-
    render() {
       return (
-        <div className="randomizer">
-          <div className="randomizeImg">
-            <div className="randomImg">
+        <div>
+          <div>
+
+            <div>
               <Slider images={this.props.images} isInfinite delay={1000}>
               {this.renderOutfits()}
               </Slider>
             </div>
+
             <div className="randomImg">
               {this.renderOutfits()}
             </div>
-             <button onClick= {this.onclickStop}>Stop</button>
-             <button onClick= {this.onclickSave}>Save</button>
+
+             <button onClick= {this.handleClick}>Stop</button>
+             <button onClick= {this.onclickStop}>Save</button>
           </div>
         </div>
       );

@@ -20,10 +20,7 @@ import { Link } from 'react-router-dom';
   }
 
 
-onclickStop(){
-    console.log("Hewll");
-    return null;
-  }
+
 
   renderOutfits(){
     let images = this.props.data.map((outfit, index) => {
@@ -35,13 +32,25 @@ onclickStop(){
   }
 
 
+  onclickStop(){
+    console.log("Hewll");
 
+  }
 
-  handleClick(e){
+  // handleClick(e){
+  //   console.log(e.target.data);
+  //   console.log(this.state.data);
+
+  //   }
+
+    handleClick(e){
     console.log(e.target.data);
-    console.log(this.props.outfit);
+    console.log(this.state.data);
 
     }
+
+
+
 
    render() {
       return (
@@ -55,8 +64,9 @@ onclickStop(){
             <div className="randomImg">
               {this.renderOutfits()}
             </div>
-             <button onClick= {this.onclickStop}>Stop</button>
+             <button onClick={this.handleClick}>Stop</button>
              <button onClick= {this.onclickSave}>Save</button>
+             <button onClick={this.handleClick}>state</button>
           </div>
         </div>
       );

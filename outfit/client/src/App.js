@@ -4,16 +4,19 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
 import Authen from './components/Authen';
-import './Carousel.css';
 
 import Header from './components/Header';
+import Footer from './components/Footer';
 import OutfitHome from './components/OutfitHome';
 import OutfitEdit from './components/OutfitEdit';
 import OutfitList from './components/OutfitList';
-import OutfitUpload from './components/OutfitUpload';
-import Slider from 'react-image-slider';
 import OutfitNewHome from './components/OutfitNewHome';
 import OutfitMake from './components/OutfitMake';
+import OutfitUpload from './components/OutfitUpload';
+import Slider from 'react-image-slider';
+import './Carousel.css';
+import Single from './components/single';
+
 
 
 // import Carousel from './components/Carousel';
@@ -164,32 +167,31 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-
         <div className="App-header">
           <Header />
         </div>
-        <main>
-          <Switch>
-            <Route path='/OutfitEdit' component={(props) => <OutfitEdit {...props} data={this.state.data} />} />
-            <Route path='/OutfitList' component={(props) => <OutfitList {...props} data={this.state.data} />} />
-            <Route path='/Auth' component={Authen} />
-            <Route path='/OutfitUpload' render={(props) =>
-              (
-                <OutfitUpload
-                  handleSubmit={this.handleSubmit}
-                  handleChange = {this.handleChange}
-                  imgPreview={this.state.imgPreview}
-                  {...props}
-                />
-              )}
-            />
-            <Route path='/OutfitMake' component={(props) => <OutfitMake {...props} data={this.state.data} />} />
-            <Route path='/' component={(props) => <OutfitNewHome {...props} data={this.state.data} />} />
-
-            <Redirect to= '/' />
+          <main>
+            <Switch>
+              <Route path='/OutfitEdit' component={(props) => <OutfitEdit {...props} data={this.state.data} />} />
+              <Route path='/OutfitList' component={(props) => <OutfitList {...props} data={this.state.data} />} />
+              <Route path='/Auth' component={Authen} />
+              <Route path='/OutfitUpload' render={(props) =>
+                (
+                  <OutfitUpload
+                    handleSubmit={this.handleSubmit}
+                    handleChange = {this.handleChange}
+                    imgPreview={this.state.imgPreview}
+                    {...props}
+                  />
+                )}
+              />
+              <Route path='/OutfitMake' component={(props) => <OutfitMake {...props} data={this.state.data} />} />
+              <Route path='/' component={(props) => <OutfitNewHome {...props} data={this.state.data} />} />
+              <Redirect to= '/' />
           </Switch>
         </main>
         <button onClick={this.handleClick}>state</button>
+        <Footer />
     </div>
     );
   }

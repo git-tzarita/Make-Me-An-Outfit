@@ -1,3 +1,6 @@
+body{
+
+}
 .App {
   text-align: center;
   max-width: 80%;
@@ -32,14 +35,10 @@
 
 header ul {
   display: inline-block;
-  padding-top: 1.5em;
+  padding-top: 2em;
 
 }
 
-header ul li {
-  vertical-align:sub;
-
-}
 
 
 .App-intro {
@@ -92,4 +91,59 @@ button{
 
 #listview {
   flex-direction: column;
+}
+
+.homeNav{
+  background: white url("http://res.cloudinary.com/ga-mao/image/upload/v1506294076/dorisday_merged_cqrtoy.jpg") no-repeat center;
+  margin: 0em auto;
+  padding: 6em 0;
+  display: block;
+}
+
+.homeNav li{
+  font-family: 'Trocchi', serif;
+  margin: 5em auto;
+  display: inline-block;
+  width: 14em;
+  height: 14em;
+  background-color:lightblue;
+  border-radius: 50%;
+  padding-top: 4em;
+  line-height: 2em;
+  vertical-align: center;
+}
+
+.homeNave ul li a{
+  color: white;
+}
+
+footer{
+  font-family: 'Trocchi', serif;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 5em;
+  padding-bottom: 0;
+  font-size: 1.2em;
+}
+
+button {
+    background-color: cornflowerblue;
+    border: none;
+    color: white;
+    margin: 1em;
+    font-size: 1.8em;
+    padding: .5em 1em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.6em;
+}
+
+label {
+  font-size: 1.4em;
+}
+
+p {
+  padding-bottom: 1em;
 }

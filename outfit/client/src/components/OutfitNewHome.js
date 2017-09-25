@@ -14,12 +14,12 @@ import { Link } from 'react-router-dom';
    render() {
       return (
         <div className="randomizer">
-        <nav>
-          <ul>
-            <li><Link to="/OutfitMake">Get New Outfit</Link></li>
-            <li><Link to="/OutfitUpload">Upload a New Image</Link></li>
-          </ul>
-        </nav>
+          <nav className ="homeNav">
+            <ul>
+              <li><Link to="/OutfitMake">Get<br/> New<br/> Outfit</Link></li>
+              <li><Link to="/OutfitUpload">Upload<br/> a New <br/>Image</Link></li>
+            </ul>
+          </nav>
         </div>
       );
     }

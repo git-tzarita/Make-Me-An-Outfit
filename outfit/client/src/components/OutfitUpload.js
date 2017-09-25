@@ -4,19 +4,17 @@ class OutfitUpload extends Component {
   render() {
     return (
       <div>
-
         <form onSubmit= {this.props.handleSubmit.bind(this)}>
           <label className="file-upload-container" htmlFor="file-upload">
             <input onChange={this.props.handleChange} style= {{ display: 'none' }} id="file-upload" type="file" />
-            <img src={this.props.imgPreview === null ? 'http://fillmurray.com/g/300/300' : this.props.imgPreview} alt ="Bill" id="img-preview" />
+            <img src={this.props.imgPreview === null ? 'http://res.cloudinary.com/ga-mao/image/upload/v1506294088/cutout1_k4aec5.jpg' : this.props.imgPreview} alt ="Bill" id="img-preview" />
           </label><br/>
-
           <label>
+            <p>Click on image to add</p>
             <p>Select a Top or Bottom:</p>
             <select name="Select Top or Bottom">
               <option value="Top">Top</option>
               <option value="Bottom">Bottom</option>
-              <option value="accessory">Accessory</option>
             </select>
           </label><br/>
 

@@ -6,7 +6,7 @@ const Header = (props) => (
   <header>
     <nav>
     <h2>Make Me an Outfit</h2>
-      <ul>
+      <ul className="mainNAv">
         <li><Link to="/">Home</Link></li>
         <li><Link to="/OutfitMake">Make New Outfit</Link></li>
         <li><Link to="/OutfitEdit">Edit</Link></li>

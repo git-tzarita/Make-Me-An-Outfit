@@ -2,14 +2,15 @@ import React from 'react';
 import Slider from 'react-image-slider';
 
 class slotElement extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
 
-  function changeImage() {
-     $slotImage.each( function(i,d) {
-      // console.log("this is i & d", i, d)
-      let random = Math.floor(Math.random() * images.length)
-      $(d).attr("src", slotElement[random]);
-    })
-  }
+    }
+
+    this.onclickStart = this.onclickStart.bind(this);
+    this.onclickStop = this.onclickStop.bind(this);
+
 
 
   renderOutfits(){
@@ -21,8 +22,16 @@ class slotElement extends React.Component {
     return images;
   }
 
-}
+  function changeImage() {
+     $slotImage.each( function(i,d) {
+      // console.log("this is i & d", i, d)
+      let random = Math.floor(Math.random() * images.length)
+      $(d).attr("src", slotElement[random]);
+    })
+  }
 
+
+}
 
   onclickStart(){
     console.log("start");
@@ -36,7 +45,6 @@ class slotElement extends React.Component {
 
   //function looping and randomizing the images
 
-console.log("this is " + )
 //click event activates the array of images
 $els.startBtn.addEventListener("click", startGame);
 
@@ -53,7 +61,6 @@ function startGame(){
 };
 
 
-}
 
 render() {
       return (
