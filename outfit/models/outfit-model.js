@@ -43,6 +43,25 @@ Outfit.findAll = (user_id) => {
 // }
 
 
+Outfit.findAllOutfits = (user_id) => {
+ return db.many(`
+    SELECT
+      oi.*,
+      c.url,
+      c.type_id,
+      c.name,
+      c.description
+    FROM outfits AS o
+    JOIN outfit_items oi
+      ON (o.id = oi.outfit_id)
+    JOIN clothing c
+      ON (oi.clothing_id = c.id)
+    JOIN types t
+      ON (c.type_id = t.id)
+    WHERE o.id = oi.id
+      `);
+};
+
 Outfit.findById = (id) => {
   return db.any(`
     SELECT
