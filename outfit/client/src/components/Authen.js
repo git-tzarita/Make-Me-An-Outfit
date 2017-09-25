@@ -7,73 +7,45 @@ class Authen extends Component{
     super(props);
 
     this.state = {
-      user:''
+      inputUserValue: '',
+      inputPasswordValue: '',
     };
-    // this.handlelogin = this.handlelogin.bind(this);
+
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
+  handleChange(event){
+    this.setState({ [event.target.name]: event.target.value })
+  }
 
-  handleLogin(user){
+  handleLogin(event){
+    event.preventDefault();
 
-    const username = this.refs.username.value;
+    const { inputUserValue, inputPasswordValue } = this.state;
 
-    const password = this.refs.password.value;
-    console.log("this is username", username)
-    this.props.handleLogin(username,password)
-
-    this.setState({
-      user:username,
+    axios.post('http://localhost:3001/login', { username: inputUserValue, password: inputPasswordValue })
+    .then(res => {
+      this.props.setUser(res.data.data.user.name);
+      this.props.history.push('/'); // redirect to home page
     })
-    console.log(this.props)
-    console.log(this.props.user)
   }
 
-  // handleLogin(username,password) {
-  //   const usersname = this.refs.usersname.value;
-  //   console.log(username,password);
-  //   axios({
-  //     method: 'GET',
-  //     url: 'http://localhost:3001/login'
-  //   })
-  //   .then(res => {
-  //     if(res.data.data === username && res.data.data===password)
-  //      //if response from server confirms users exists AND password is correct
-  //      this.setState({db:res.data.data})
-  //     // it should send the user id
-  //   })
-  //   .then(res => {
-  //     // then another axios call to DB to pull all their clothes based on user id
-  //     axios({
-  //       method:'POST',
-  //       url:'http://localhost:3001/login'
-  //       // make axios call here
-  //     }).then(res => {
-  //       // then set state with user ID, Name, and outfies
-  //       this.setState()
-  //     })
-  //   })
-  // }
 
-
-
-render(){
-  return (
-    <div>
-      <input id="username" ref="username" type="username" placeholder="Enter user name" /><br />
-      <input id="pass" ref="password" type="password" placeholder="Enter Password" /><br />
-
-      <button onClick={this.handleLogin}>Log In</button>
-      <button>Sign Up</button>
-      <button>Log out</button>
-      <h1>{this.state.user}</h1>
-
-
-
-    </div>
-
-   );
-}
+  render(){
+    return (
+      <div>
+        <form onSubmit={this.handleLogin}>
+          <input id="username" type="text" name="inputUserValue" value={this.state.inputUserValue} onChange={this.handleChange} placeholder="Enter user name" /><br />
+          <input id="pass" type="password" name="inputPasswordValue" value={this.state.inputPasswordValue} onChange={this.handleChange} placeholder="Enter Password" /><br />
+          <button type="submit">Log In</button>
+        </form>
+        <button>Sign Up</button>
+        <button>Log out</button>
+        <h1>{this.state.user}</h1>
+      </div>
+     );
+  }
 
 }
 

@@ -23,8 +23,10 @@ app.use(express.static(__dirname + "/public"));
 /* outfit API route */
 const outfitRoutes = require('./routes/outfitroutes');
 app.use('/api/outfits', outfitRoutes);
-
-app.use('/login', outfitRoutes);
+//const userRoutes = require('./routes/userroutes');
+//app.use('/api/users',userRoutes);
+const loginRoutes = require('./routes/loginroutes');
+app.use('/login', loginRoutes);
 
 /* handling 404 */
 // app.get('*', function(req, res) {

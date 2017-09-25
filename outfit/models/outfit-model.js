@@ -195,14 +195,13 @@ Outfit.findByUserName= (userName) =>{
     `, [userName]);
 }
 
-Outfit.create = user => {
+Outfit.createAUser = user => {
   return db.one(`
     INSERT INTO users
-    (name,password)
+    (name, password)
     VALUES ($1, $2)
     RETURNING *
-
-      `[user.name,user.password]);
+      `, [user.username, user.password]);
 };
 
 // HOW DO I STORE THIS TO USER
