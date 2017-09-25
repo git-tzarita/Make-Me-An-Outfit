@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Image } from 'cloudinary-react';
-import axios from 'axios';
+// import { Image } from 'cloudinary-react';
+// import axios from 'axios';
 import Slider from 'react-image-slider';
 
 class OutfitEdit extends Component {
@@ -13,7 +13,7 @@ renderOutfitsTops(){
 
     if (outfit.type_id === 1) {
     return (
-        <img src={outfit.url} key={index} />
+        <img src={outfit.url} key={index} alt ="outfits"/>
     )}
 
       ;
@@ -29,7 +29,7 @@ renderOutfitsBottoms(){
 
     if (outfit.type_id === 2) {
     return (
-        <img src={outfit.url} key={index} />
+        <img src={outfit.url} key={index} alt ="outfits" />
     )}
 
       ;

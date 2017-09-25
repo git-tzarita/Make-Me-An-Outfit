@@ -1,83 +1,63 @@
 import React, { Component } from 'react';
 import Slider from 'react-image-slider';
-import { Image } from 'cloudinary-react';
-import axios from 'axios';
-import Carousel from './Carousel';
-import { Link } from 'react-router-dom';
+// import { Image } from 'cloudinary-react';
+// import axios from 'axios';
+// import Carousel from './Carousel';
+// import { Link } from 'react-router-dom';
 
 
  class OutfitHome extends Component {
-  constructor(){
-    super();
-    this.state = {
+  constructor(props){
+    super(props);
+}
+    // this.handleClick = this.handleClick.bind(this);
+    // this.onclickStop = this.onclickStop.bind(this);
 
-    }
-    // this.onclickShuffle = this.this.onclickShuffle.bind(this)
-    // this.onclickStop = this.this.onclickStop.bind(this)
-    // this.onclickSave = this.this.onclickSave.bind(this)
-    // this.onclickGetNew = this.onclickGetNew.bind(this)
+
+handleClick(){
+    console.log(this.state.data);
+  }
+
+
+onclickStop(){
+    this.setState({
+    });
 
   }
 
 
-
-  onclickShuffle(event){
-  //   console.log('handling shuffle')
-  //     $slotImage.each( function(i,d) {
-  //     let random = Math.floor(Math.random() * slotElement.length)
-  //     $(d).attr("src", slotElement[random]);
-  //   })
-  // }
-
-
-  }
-
-
+// mapping the database
   renderOutfits(){
     let images = this.props.data.map((outfit, index) => {
       return (
           <img src={outfit.url} key={index} />
         );
     });
-
     return images;
   }
-  onclickStop(){
 
-  }
+   render() {
+      return (
+        <div>
+          <div>
 
-  onclickSave(){
+            <div>
+              <Slider images={this.props.images} isInfinite delay={1000}>
+              {this.renderOutfits()}
+              </Slider>
+            </div>
 
-  }
+            <div className="randomImg">
+              {this.renderOutfits()}
+            </div>
 
-  onclickGetNew(){
-
-  }
-
-
- render() {
-    return (
-      <div className="randomizer">
-      <nav>
-        <ul>
-          <li><Link to="/OutfitList">Get New Outfit</Link></li>
-          <li><Link to="/OutfitUpload">Upload a New Image</Link></li>
-        </ul>
-      </nav>
-      <Slider images={this.props.images} isInfinite delay={5000}>
-            {this.renderOutfits()}
-          </Slider>
-        <h2>Home</h2>
-        <div className="randomizeImg">
-          <div className="randomImg"></div>
-           <button onClick= {this.onclickShuffle}>Shuffle</button>
-           <button onClick= {this.onclickStop}>Stop</button>
-           <button onClick= {this.onclickSave}>Save</button>
+             <button onClick= {this.handleClick}>Stop</button>
+             <button onClick= {this.onclickStop}>Save</button>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
-}
 
 
 export default OutfitHome;

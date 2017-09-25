@@ -26,8 +26,7 @@ renderOutfit(){
   let outfit = this.state.outfit.map(outfit => {
     return (
       <div>
-        <img src={outfit["0"].url} alt="top" />
-        <img src={outfit["1"].url} alt="bottom" />
+        <img src={outfit.url} alt="fulloutfit" />
       </div>
     );
   })
@@ -39,6 +38,7 @@ renderOutfit(){
 render() {
   return(
     <div>{this.renderOutfit()}</div>
+
     )
 }
 

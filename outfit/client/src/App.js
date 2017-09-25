@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
 // import { Navbar, Jumbotron, Button } from 'react-bootstrap';
-import { Image } from 'cloudinary-react';
+// import { Image } from 'cloudinary-react';
 import axios from 'axios';
 import './App.css';
-import './Carousel.css';
 import Authen from './components/Authen';
+
 import Header from './components/Header';
-import OutfitHome from './components/OutfitHome';
+import Footer from './components/Footer';
+// import OutfitHome from './components/OutfitHome';
 import OutfitEdit from './components/OutfitEdit';
 import OutfitList from './components/OutfitList';
+import OutfitNewHome from './components/OutfitNewHome';
+import OutfitMake from './components/OutfitMake';
 import OutfitUpload from './components/OutfitUpload';
+// import Slider from 'react-image-slider';
+import './Carousel.css';
 import Single from './components/single';
 
-import Carousel from './components/Carousel';
-import Slider from 'react-image-slider';
+
+
+// import Carousel from './components/Carousel';
 
 import { Route, Redirect, Switch } from 'react-router-dom';
 
@@ -24,7 +30,6 @@ class App extends Component {
     this.state = {
       image: null,
       imgPreview: null,
-      user:'',
       data: [] // DATA FROM SERVER
     }
 
@@ -32,7 +37,6 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.handleClick = this.handleClick.bind(this);
-
   }
 
   /* triggered before rendering, but will be overrritten by "didMount" */
@@ -121,7 +125,7 @@ class App extends Component {
   sendToDB(url){
     axios({
       method: 'POST',
-      url: 'CLOUDINARY_URL', // ENDPOINT WHERE THIS URL IS GOING
+      url: 'http://localhost:3001/api/outfits', // ENDPOINT WHERE THIS URL IS GOING
       data: {
         url: url
       }
@@ -132,17 +136,20 @@ class App extends Component {
     .catch(err => console.error(err));
   }
 
+
   handleLogin(username,password) {
-    console.log("inside handleLogin ", username, password);
+
     axios({
       method: 'GET',
       url: 'http://localhost:3001/login',
       params: {"username": username}
     })
     .then(res => {
+
       if(res.data.user === username && res.data.data===password)
        //if response from server confirms users exists ND password is correct
        this.setState({user:res.data.user})
+
       // it should send the user id
     })
     // .then(res => {
@@ -174,21 +181,21 @@ class App extends Component {
     console.log(this.state.data)
   }
 
+
   // handleClick(){
   //   this.setState({
   //     user:this.refs.username.value
   //   })
   // }
 
+
   render() {
     return (
       <div className="App">
-<button onClick={this.handleClick}>state</button>
         <div className="App-header">
-        <h1>{this.state.user}</h1>
-          <h2>Make Me a Outfit</h2>
-                   <Header />
+          <Header />
         </div>
+
         <main>
           <Switch>
             <Route path='/OutfitEdit' component={(props) => <OutfitEdit {...props} data={this.state.data} />} />
@@ -211,10 +218,11 @@ class App extends Component {
 
             <Route path='/' component={(props) => <OutfitHome {...props} data={this.state.data} />} />
             <Redirect to= '/' />
+
           </Switch>
         </main>
-
-
+        <button onClick={this.handleClick}>state</button>
+        <Footer />
     </div>
     );
   }
@@ -223,5 +231,3 @@ class App extends Component {
 export default App;
 
 
-// <OutfitList / >
-// <Carousel />
