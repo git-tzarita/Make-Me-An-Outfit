@@ -136,33 +136,58 @@ class App extends Component {
     .catch(err => console.error(err));
   }
 
-  handleLogin(user,pswd) {
-    console.log(user,pswd);
+
+  handleLogin(username,password) {
+
     axios({
       method: 'GET',
-      url: 'http://localhost:3001/login'
+      url: 'http://localhost:3001/login',
+      params: {"username": username}
     })
     .then(res => {
-      if(res.data.data === user && res.data.data===pswd)
-       //if response from server confirms users exists AND password is correct
-       this.setState({db:res.data.data})
+
+      if(res.data.user === username && res.data.data===password)
+       //if response from server confirms users exists ND password is correct
+       this.setState({user:res.data.user})
+
       // it should send the user id
     })
-    .then(res => {
-      // then another axios call to DB to pull all their clothes based on user id
-      axios({
-        method:'POST',
-        url:'http://localhost:3001/login'
-        // make axios call here
-      }).then(res => {
-        // then set state with user ID, Name, and outfies
-        this.setState()
-      })
+    // .then(res => {
+    //   // then another axios call to DB to pull all their clothes based on user id
+    //   axios({
+    //     method:'POST',
+    //     url:'http://localhost:3001/login',
+    //     data:{
+    //       username:user
+    //     }
+    //     // make axios call here
+    //   }).then(res => {
+    //     console.log('username just inserted')
+    //     // then set state with user ID, Name, and outfies
+    //     this.setState(prevState => {
+    //       return{
+    //         user:prevState.user
+    //       }
+
+    //     })
+    //   })
+    // })
+    .catch(err => {
+      console.log('error posting');
     })
   }
+
    handleClick(){
     console.log(this.state.data)
   }
+
+
+  // handleClick(){
+  //   this.setState({
+  //     user:this.refs.username.value
+  //   })
+  // }
+
 
   render() {
     return (
@@ -170,25 +195,30 @@ class App extends Component {
         <div className="App-header">
           <Header />
         </div>
-          <main>
-            <Switch>
-              <Route path='/OutfitEdit' component={(props) => <OutfitEdit {...props} data={this.state.data} />} />
-              <Route path='/OutfitList' component={(props) => <OutfitList {...props} data={this.state.data} />} />
-              <Route exact path='/OutfitList/:id' component={Single} />
-              <Route path='/Auth' component={Authen} />
-              <Route path='/OutfitUpload' render={(props) =>
-                (
-                  <OutfitUpload
-                    handleSubmit={this.handleSubmit}
-                    handleChange = {this.handleChange}
-                    imgPreview={this.state.imgPreview}
-                    {...props}
-                  />
-                )}
-              />
-              <Route path='/OutfitMake' component={(props) => <OutfitMake {...props} data={this.state.data} />} />
-              <Route path='/' component={(props) => <OutfitNewHome {...props} data={this.state.data} />} />
-              <Redirect to= '/' />
+
+        <main>
+          <Switch>
+            <Route path='/OutfitEdit' component={(props) => <OutfitEdit {...props} data={this.state.data} />} />
+            <Route path='/OutfitList' component={(props) => <OutfitList {...props} data={this.state.data} />} />
+
+            <Route path='/single/:id' component={Single} />
+
+            <Route path='/Auth' component={(props) => <Authen {...props} handleLogin={this.handleLogin} user={this.state.user} />}/>
+
+            <Route path='/OutfitUpload' render={(props) =>
+              (
+                <OutfitUpload
+                  handleSubmit={this.handleSubmit}
+                  handleChange = {this.handleChange}
+                  imgPreview={this.state.imgPreview}
+                  {...props}
+                />
+              )}
+            />
+
+            <Route path='/' component={(props) => <OutfitHome {...props} data={this.state.data} />} />
+            <Redirect to= '/' />
+
           </Switch>
         </main>
         <button onClick={this.handleClick}>state</button>

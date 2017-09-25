@@ -16,13 +16,15 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static('public'));
 app.use(express.static(__dirname + "/public"));
 
-app.get('/', function(req, res) {
-  res.sendFile(__dirname + '/public/index.html');
-});
+// app.get('/', function(req, res) {
+//   res.sendFile(__dirname + '/public/index.html');
+// });
 
 /* outfit API route */
 const outfitRoutes = require('./routes/outfitroutes');
 app.use('/api/outfits', outfitRoutes);
+
+app.use('/login', outfitRoutes);
 
 /* handling 404 */
 // app.get('*', function(req, res) {
