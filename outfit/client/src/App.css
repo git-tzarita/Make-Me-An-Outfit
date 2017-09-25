@@ -65,6 +65,21 @@ button{
   color:red;
 }
 
-#listview {
-  flex-direction: column;
+#outfitListWrapper {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+}
+
+#listTop {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+#listBottom {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+
 }

@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 
 
-impot axios from 'axios';
+import axios from 'axios';
 
 
 class Authen extends Component{
   constructor(props){
     super(props);
-    
+
     this.state = {
       user:''
     };
