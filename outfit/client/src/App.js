@@ -182,7 +182,6 @@ class App extends Component {
             <Route path='/OutfitEdit' component={(props) => <OutfitEdit {...props} data={this.state.data} />} />
             <Route exact path='/OutfitList' component={(props) => <OutfitList {...props} data={this.state.data} />} />
             <Route exact path='/OutfitList/:id' component={Single} />
-            <Route path='/singleList' component={(props) => <OutfitList {...props} data={this.state.data} />} />
             <Route path='/Auth' component={(props) => <Authen {...props} user={this.state.user} />}/>
 
             <Route path='/OutfitUpload' render={(props) =>
