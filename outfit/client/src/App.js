@@ -133,31 +133,43 @@ class App extends Component {
   }
 
   handleLogin(username,password) {
-
-    console.log(username,password);
+    console.log("inside handleLogin ", username, password);
     axios({
       method: 'GET',
-      url: 'http://localhost:3001/login'
+      url: 'http://localhost:3001/login',
+      params: {"username": username}
     })
     .then(res => {
-      if(res.data.data === username && res.data.data===password)
-       //if response from server confirms users exists AND password is correct
-       this.setState({user:res.data.data})
+      if(res.data.user === username && res.data.data===password)
+       //if response from server confirms users exists ND password is correct
+       this.setState({user:res.data.user})
       // it should send the user id
     })
-    .then(res => {
-      // then another axios call to DB to pull all their clothes based on user id
-      axios({
-        method:'POST',
-        url:'http://localhost:3001/login'
-        // make axios call here
-      }).then(res => {
-        // then set state with user ID, Name, and outfies
-        this.setState()
-      })
+    // .then(res => {
+    //   // then another axios call to DB to pull all their clothes based on user id
+    //   axios({
+    //     method:'POST',
+    //     url:'http://localhost:3001/login',
+    //     data:{
+    //       username:user
+    //     }
+    //     // make axios call here
+    //   }).then(res => {
+    //     console.log('username just inserted')
+    //     // then set state with user ID, Name, and outfies
+    //     this.setState(prevState => {
+    //       return{
+    //         user:prevState.user
+    //       }
+
+    //     })
+    //   })
+    // })
+    .catch(err => {
+      console.log('error posting');
     })
   }
-  
+
    handleClick(){
     console.log(this.state.data)
   }
@@ -167,7 +179,7 @@ class App extends Component {
   //     user:this.refs.username.value
   //   })
   // }
-  
+
   render() {
     return (
       <div className="App">
@@ -184,7 +196,7 @@ class App extends Component {
 
             <Route path='/single/:id' component={Single} />
 
-            <Route path='/Auth' component={(props) => <Authen {...props} user={this.state.user} />}/>
+            <Route path='/Auth' component={(props) => <Authen {...props} handleLogin={this.handleLogin} user={this.state.user} />}/>
 
             <Route path='/OutfitUpload' render={(props) =>
               (
