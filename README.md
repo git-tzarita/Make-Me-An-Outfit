@@ -54,13 +54,13 @@ Outfit.findById = (id) => {
 ### Express/Node ###
 This app was challenging because it took a few days get the database set up. We went through 3 setups. The first setup involved four tables, but a lot of the material was repetitive and we had a hard time navigating how to post to two tables simultaneously that weren't connected. 
 
-Initital Database Setup
+### Initital Database Setup ###
 
-![Make Me an Outfit Initial Database](/assets-proposal/database-tables.png "Make Me an Outfit Initial Database")
+![Make Me an Outfit Initial Database](/assets-proposal/database-tables.jpg "Make Me an Outfit Initial Database")
 
 We finally landed on a five table setup with the help of our instructor so every table was linked and any changes that were made would cascade through the rest of the table. 
 
-![Make Me an Outfit Final Database](/assets/final-table-setup.png "Make Me an Outfit Final Database")
+![Make Me an Outfit Final Database](/assets/final-table-setup.jpg "Make Me an Outfit Final Database")
 
 ### React Native ###
 Once we had the database up and running, we were able to start moving quickly on the React components. As we moved through the project, we kept discovering more efficient ways to work on the React components by revising our structure and moving components around. 
