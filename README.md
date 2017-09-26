@@ -82,7 +82,7 @@ We had some issues with grabbing the data that the user input and storing it in 
 ![Make Me An Outfit Edit Wireframe](/assets-proposal/Edit2.png "Make Me An Outfit Edit")
 
 ### PRIORITY MATRIX ###
-![Make Me An Outfit Priority Matrix](/assets-proposal/priority-matrix.png "Make Me An Outfit Priority Matrix")
+![Make Me An Outfit Priority Matrix](/assets-proposal/priority-matrix.jpg "Make Me An Outfit Priority Matrix")
 
 
 
