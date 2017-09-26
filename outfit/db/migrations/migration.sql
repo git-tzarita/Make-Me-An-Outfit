@@ -1,4 +1,4 @@
-\c outfit_app
+-- \c outfit_app
 
 DROP DATABASE outfit_app;
 CREATE DATABASE outfit_app;

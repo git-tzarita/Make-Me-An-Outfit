@@ -16,23 +16,27 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static('public'));
 app.use(express.static(__dirname + "/public"));
 
-//app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/public/index.html');
 });
 
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname+'/client/build/index.html'));
-// });
+app.get('/*', function (req, res) {
+   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+ });
 
 /* outfit API route */
 const outfitRoutes = require('./routes/outfitroutes');
 app.use('/api/outfits', outfitRoutes);
-//const userRoutes = require('./routes/userroutes');
-//app.use('/api/users',userRoutes);
+
 const loginRoutes = require('./routes/loginroutes');
 app.use('/login', loginRoutes);
+
+
+//const userRoutes = require('./routes/userroutes');
+//app.use('/api/users',userRoutes);
+
 
 /* handling 404 */
 // app.get('*', function(req, res) {

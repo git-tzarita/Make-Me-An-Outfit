@@ -15,7 +15,7 @@ componentDidMount() {
   console.log('these are the props --->', this.props)
   axios({
       method: 'GET',
-      url: `http://localhost:3001/api/outfits/${this.state.outfitId}`
+      url: `/api/outfits/${this.state.outfitId}`
     })
     .then(res => {
       console.log(res);

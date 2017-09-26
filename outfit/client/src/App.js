@@ -110,7 +110,7 @@ class App extends Component {
   getDataFromDB(){
     axios({
       method: 'GET',
-      url: 'http://localhost:3001/api/outfits', // ENDPOINT TO GET INFORMATION
+      url: '/api/outfits', // ENDPOINT TO GET INFORMATION
     })
     .then(res => {
       // SET STATE WITH INFORMATION YOU RECEIVED
@@ -123,7 +123,7 @@ class App extends Component {
   sendToDB(url){
     axios({
       method: 'POST',
-      url: 'http://localhost:3001/api/outfits/upload', // ENDPOINT WHERE THIS URL IS GOING
+      url: '/api/outfits/upload', // ENDPOINT WHERE THIS URL IS GOING
       data: {
         url: url,
         type_id: this.state.typeID

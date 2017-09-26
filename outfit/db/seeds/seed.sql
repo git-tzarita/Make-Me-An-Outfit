@@ -1,5 +1,5 @@
 
-\c outfit_app
+-- \c outfit_app
 
 INSERT INTO users (name) VALUES
 ('Jason'),

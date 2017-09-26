@@ -24,7 +24,7 @@ class Authen extends Component{
 
     const { inputUserValue, inputPasswordValue } = this.state;
 
-    axios.post('http://localhost:3001/login', { username: inputUserValue, password: inputPasswordValue })
+    axios.post('/login', { username: inputUserValue, password: inputPasswordValue })
     .then(res => {
       this.props.setUser(res.data.data.user.name);
       this.props.history.push('/'); // redirect to home page
