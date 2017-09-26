@@ -29,8 +29,6 @@ body{
   color: cornflowerblue;
   display: inline-block;
   float: left;
-
-
 }
 
 header ul {
@@ -74,8 +72,18 @@ nav ul li a {
 
 nav ul li a:hover {
   font-weight: bold;
+  color: cornflowerblue;
   text-decoration: none;
 }
+
+
+nav ul li a:active {
+  font-weight: bold;
+  color: cornflowerblue;
+}
+
+
+
 
 .file-upload-container img{
   cursor: pointer;
@@ -123,7 +131,7 @@ button{
   height: 14em;
   background-color:lightblue;
   border-radius: 50%;
-  padding-top: 4em;
+  padding-top: 2em;
   line-height: 2em;
   vertical-align: center;
 }
@@ -153,6 +161,7 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 1.6em;
+    border-radius: 5%;
 }
 
 label {
@@ -162,6 +171,7 @@ label {
 p {
   padding-bottom: 1em;
 }
+
 #form{
   font-family: 'Trocchi', serif;
   margin: 5em auto;

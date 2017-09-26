@@ -168,7 +168,6 @@ class App extends Component {
             <Redirect to= '/' />
           </Switch>
         </main>
-        <button onClick={this.handleClick}>state</button>
         <Footer />
     </div>
     );
@@ -176,4 +175,3 @@ class App extends Component {
 }
 
 export default App;
-

@@ -34,7 +34,6 @@ class OutfitEdit extends Component {
   render() {
     return (
       <div>
-        <h2>Edit</h2>
         <div id="editTop" className ="randomImg">
           <Slider images={this.props.images} isInfinite delay={false} >
             {this.renderOutfitsTops()}

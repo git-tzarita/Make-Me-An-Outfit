@@ -31,8 +31,6 @@ class OutfitList extends Component {
             </div>
           </div>
         </div>
-
-        <div></div>
       </div>
     );
   }
