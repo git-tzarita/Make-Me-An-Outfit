@@ -155,8 +155,6 @@ Outfit.create = (userID, clothingIDs) => {
   return insertOutfits();
 }
 
-
-//for Auth only
 Outfit.findByUserName= (userName) =>{
   return db.one(`
     SELECT * FROM users

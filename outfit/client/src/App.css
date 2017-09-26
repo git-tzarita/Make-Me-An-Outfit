@@ -163,13 +163,22 @@ p {
   padding-bottom: 1em;
 }
 #form{
-  background: gray;
+  font-family: 'Trocchi', serif;
+  margin: 5em auto;
+  display: inline-block;
+  width: 24em;
+  height: 24em;
+  background-color:lightblue;
+  border-radius: 50%;
+  padding-top: 4em;
+  line-height: 2em;
+  vertical-align: center;
 }
 #auth{
-   background-color: #4CAF50;
+   background-color: #757896;
    border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 10px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -193,3 +202,7 @@ p {
   display: flex;
   flex-direction: row;
 }
+/*#username, #pass{
+  background: #a00941;
+
+}*/
