@@ -172,23 +172,47 @@ p {
   padding-bottom: 1em;
 }
 
+#form{
+  font-family: 'Trocchi', serif;
+  margin: 5em auto;
+  display: inline-block;
+  width: 24em;
+  height: 24em;
+  background-color:lightblue;
+  border-radius: 50%;
+  padding-top: 4em;
+  line-height: 2em;
+  vertical-align: center;
+}
 #auth{
-   background-color: cornflowerblue;
+   background-color: #757896;
    border: none;
     color: white;
-    padding: 15px;
+    padding: 10px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     margin: 4px 2px;
-}
-form{
-  margin: 3em ;
+    font-size: 1em;
 }
 
-form input{
-  padding: .7em;
-  font-size: 1.6em;
-  margin: 1em ;
+#listWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 80%;
 }
+
+#outfitItem {
+  margin: 10px;
+}
+
+#buttonWrapper {
+  display: flex;
+  flex-direction: row;
+}
+/*#username, #pass{
+  background: #a00941;
+
+}*/
