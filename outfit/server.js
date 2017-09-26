@@ -6,21 +6,21 @@ const app = express();
 const cors = require('cors');
 
 app.use(cors())
-app.use('/static', express.static(path.join(__dirname, 'public')));
+// app.use('/static', express.static(path.join(__dirname, 'public')));
 
 app.use(logger('dev'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.use(express.static('public'));
-app.use(express.static(__dirname + "/public"));
+// app.use(express.static('public'));
+// app.use(express.static(__dirname + "/public"));
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-app.get('/', function(req, res) {
-  res.sendFile(__dirname + '/public/index.html');
-});
+// app.get('/', function(req, res) {
+//   res.sendFile(__dirname + '/public/index.html');
+// });
 
 app.get('/*', function (req, res) {
    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
