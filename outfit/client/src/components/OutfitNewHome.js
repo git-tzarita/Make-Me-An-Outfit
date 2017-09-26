@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 // import Carousel from './Carousel';
 import { Link } from 'react-router-dom';
  class OutfitNewHome extends Component {
+
    render() {
       return (
         <div className="randomizer">

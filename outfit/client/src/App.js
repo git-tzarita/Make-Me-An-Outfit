@@ -30,17 +30,19 @@ class App extends Component {
     this.state = {
       image: null,
       imgPreview: null,
-      typeID: '',
-      data: [] // DATA FROM SERVER
 
+      data: [], // DATA FROM SERVER
+      user: null
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleLogin = this.handleLogin.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.handleTypeChange = this.handleTypeChange.bind(this);
+    this.setUser = this.setUser.bind(this);
+  }
 
+  setUser(username) {
+    this.setState({ user: username })
   }
 
   /* triggered before rendering, but will be overrritten by "didMount" */
@@ -57,7 +59,6 @@ class App extends Component {
     this.getDataFromDB();
 
   }
-
 
   handleChange(e){
     if (e.currentTarget.files.length === 1) {
@@ -146,47 +147,6 @@ class App extends Component {
     .catch(err => console.error(err));
   }
 
-
-  // handleLogin(username,password) {
-
-  //   axios({
-  //     method: 'GET',
-  //     url: 'http://localhost:3001/login',
-  //     params: {"username": username}
-  //   })
-  //   .then(res => {
-
-  //     if(res.data.user === username && res.data.data===password)
-  //      //if response from server confirms users exists ND password is correct
-  //      this.setState({user:res.data.user})
-
-  //     // it should send the user id
-  //   })
-    // .then(res => {
-    //   // then another axios call to DB to pull all their clothes based on user id
-    //   axios({
-    //     method:'POST',
-    //     url:'http://localhost:3001/login',
-    //     data:{
-    //       username:user
-    //     }
-    //     // make axios call here
-    //   }).then(res => {
-    //     console.log('username just inserted')
-    //     // then set state with user ID, Name, and outfies
-    //     this.setState(prevState => {
-    //       return{
-    //         user:prevState.user
-    //       }
-
-    //     })
-    //   })
-    // })
-  //   .catch(err => {
-  //     console.log('error posting');
-  //   })
-  // }
-
    handleClick(){
     console.log(this.state.data)
   }
@@ -211,8 +171,7 @@ class App extends Component {
             <Route path='/OutfitEdit' component={(props) => <OutfitEdit {...props} data={this.state.data} />} />
             <Route exact path='/OutfitList' component={(props) => <OutfitList {...props} data={this.state.data} />} />
             <Route exact path='/OutfitList/:id' component={Single} />
-            <Route path='/Auth' component={(props) => <Authen {...props} user={this.state.user} />}/>
-
+            <Route path='/Auth' component={(props) => <Authen {...props} setUser={this.setUser} />}/>
 
             <Route path='/OutfitUpload' render={(props) =>
               (
@@ -227,8 +186,9 @@ class App extends Component {
                 />
               )}
             />
+
             <Route path='/OutfitMake' component={(props) => <OutfitMake {...props} data={this.state.data} />} />
-            <Route path='/' component={(props) => <OutfitNewHome {...props} data={this.state.data} />} />
+            <Route path='/' component={(props) => <OutfitNewHome {...props} data={this.state.data} user={this.state.user}/>} />
             <Redirect to= '/' />
 
           </Switch>
@@ -241,5 +201,4 @@ class App extends Component {
 }
 
 export default App;
-
 

@@ -222,23 +222,23 @@ Outfit.create = (userID, clothingIDs) => {
 //   })
 // }
 
-// for Auth only
-// Outfit.findByUserName= (userName) =>{
-//   return db.one(`
-//     SELECT * FROM users
-//     WHERE username = $1
-//     `, [userName]);
-// }
+//for Auth only
+Outfit.findByUserName= (userName) =>{
+  return db.one(`
+    SELECT * FROM users
+    WHERE username = $1
+    `, [userName]);
+}
 
-// Outfit.create = user => {
-//   return db.one(`
-//     INSERT INTO users
-//     (name,password)
-//     VALUES ($1, $2)
-//     RETURNING *
 
-//       `[user.name,user.password]);
-// };
+Outfit.createAUser = user => {
+  return db.one(`
+    INSERT INTO users
+    (name, password)
+    VALUES ($1, $2)
+    RETURNING *
+      `, [user.username, user.password]);
+};
 
 // HOW DO I STORE THIS TO USER
 Outfit.update = (outfits, id) => {

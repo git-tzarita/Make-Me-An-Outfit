@@ -7,8 +7,6 @@ outfitRoutes.get('/:id/edit', outfitsController.edit);
 
 outfitRoutes.get('/:id', outfitsController.show);
 
-// outfitRoutes.get('/', outfitsController.findByUserName);
-
 outfitRoutes.delete('/:id', outfitsController.delete);
 outfitRoutes.put('/:id', outfitsController.update);
 
