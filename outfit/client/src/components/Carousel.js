@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from 'react-image-slider';
 
+
 export default React.createClass({
   render() {
     const images = [

@@ -11,14 +11,14 @@ class Single extends Component{
     }
   }
 
-  componentDidMount() {
-    //console.log('these are the props --->', this.props)
-    axios({
+componentDidMount() {
+  console.log('these are the props --->', this.props)
+  axios({
       method: 'GET',
       url: `http://localhost:3001/api/outfits/${this.state.outfitId}`
     })
     .then(res => {
-      //console.log(res);
+      console.log(res);
       // SET STATE WITH INFORMATION YOU RECEIVED
       this.setState({
         outfit: res.data.data.outfit,
@@ -26,31 +26,37 @@ class Single extends Component{
       })
     })
     .catch(err => console.error(err));
-  }
+}
 
-  renderOutfit(){
-    //console.log(this.state.outfit + ' state: outf')
-    if (this.state.apiDataLoaded === true){
-      let outfit = this.state.outfit.map((outfit, index) => {
-        return (
-          <div>
-            <img src={outfit.url} alt="fulloutfit" key={index} />
-          </div>
-        );
-      })
-    return outfit;
-    }
-  }
-
-  render() {
-    //console.log(this.state.outfit)
-    return(
+renderOutfit(){
+  console.log(this.state.outfit + ' state: outf')
+  if(this.state.apiDataLoaded === true){
+  let outfit = this.state.outfit.map((outfit, index) => {
+    return (
       <div>
-        <div>{this.renderOutfit()}</div>
-        <button><Link to="/OutfitEdit">Edit Outfit</Link></button>
+        <img src={outfit.url} alt="fulloutfit" key={index} />
       </div>
+    );
+  })
+
+  return outfit;
+}
+}
+
+render() {
+  console.log(this.state.outfit)
+  return(
+    <div>
+    <div>{this.renderOutfit()}</div>
+    <Link to="/OutfitEdit">Edit Outfit</Link>
+    </div>
+
+
+
+
     )
-  }
+}
+
 }
 
 export default Single;
