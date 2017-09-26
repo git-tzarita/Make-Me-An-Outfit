@@ -1,5 +1,7 @@
 import axios from 'axios'
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom';
+
 class Single extends Component{
   constructor(props){
     super(props);
@@ -26,29 +28,30 @@ componentDidMount() {
     .catch(err => console.error(err));
 }
 
-// renderOutfit(){
-//   console.log(this.state.outfit)
-//   if(this.state.apiDataLoaded === true){
-//   let outfit = this.state.outfit.map(outfit => {
-//     return (
-//       <div>
-//         <img src={outfit.url} alt="fulloutfit" />
-//       </div>
-//     );
-//   })
+renderOutfit(){
+  console.log(this.state.outfit + ' state: outf')
+  if(this.state.apiDataLoaded === true){
+  let outfit = this.state.outfit.map((outfit, index) => {
+    return (
+      <div>
+        <img src={outfit.url} alt="fulloutfit" key={index} />
+      </div>
+    );
+  })
 
-//   return outfit;
-// }
-// }
+  return outfit;
+}
+}
 
 render() {
   console.log(this.state.outfit)
   return(
     <div>
-    <p>hello</p>
+    <div>{this.renderOutfit()}</div>
+    <Link to="/OutfitEdit">Edit Outfit</Link>
     </div>
 
-    // <div>{this.renderOutfit()}</div>
+
 
 
     )
