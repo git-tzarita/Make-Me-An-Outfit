@@ -41,13 +41,13 @@ renderOutfitsBottoms(){
     return (
       <div>
         <h2>Edit</h2>
-        <div id="editTop">
-          <Slider images={this.props.images} isInfinite delay={5000}>
+        <div id="editTop" className ="randomImg">
+          <Slider images={this.props.images} isInfinite delay={false} >
             {this.renderOutfitsTops()}
           </Slider>
         </div>
-        <div id="editBottom">
-          <Slider images={this.props.images} isInfinite delay={5000}>
+        <div id="editBottom" className ="randomImg">
+          <Slider images={this.props.images} isInfinite delay={false}>
             {this.renderOutfitsBottoms()}
           </Slider>
         </div>

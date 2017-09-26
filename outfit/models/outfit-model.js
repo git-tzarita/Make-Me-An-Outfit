@@ -17,7 +17,8 @@ Outfit.findAll = (user_id) => {
     JOIN clothing c
       ON (oi.clothing_id = c.id)
     JOIN types t
-      ON (c.type_id = t.id)`);
+      ON (c.type_id = t.id)
+      `);
 };
 
 // Outfit.findAll = (user_id) => {
@@ -123,6 +124,40 @@ Outfit.create = (userID, clothingIDs) => {
   //return db.tx(insertOutfits)
 }
 
+Outfit.createClothing = (data) => {
+  return db.one(`
+    INSERT INTO clothing
+      (url, type_id)
+      VALUES ($1, $2)
+      RETURNING id`,
+      [data.url, data.type_id]
+      )
+}
+
+Outfit.create = (userID, clothingIDs) => {
+  // debugger;
+  const insertOutfits = async () => {
+    // get the new outfitID;
+    // userID --> outfitID
+    const outfitID = await db.one(`
+      INSERT INTO outfits (user_id)
+      VALUES ($1)
+      RETURNING id
+    `, userID);
+    const dataMulti = clothingIDs.map((itemID) => {
+      return {
+        outfit_id: outfitID,
+        clothing_id: itemID,
+      };
+    });
+    const cs = new pgp.helpers.ColumnSet(['outfit_id', 'clothing_id'], {table:'outfit_items'})
+    const temp = await pgp.helpers.insert(dataMulti, cs);
+    return outfitID, itemID;
+  };
+  return insertOutfits();
+  //return db.tx(insertOutfits)
+}
+
 
 
 
@@ -187,13 +222,14 @@ Outfit.create = (userID, clothingIDs) => {
 //   })
 // }
 
-// for Auth only
+//for Auth only
 Outfit.findByUserName= (userName) =>{
   return db.one(`
     SELECT * FROM users
     WHERE username = $1
     `, [userName]);
 }
+
 
 Outfit.createAUser = user => {
   return db.one(`

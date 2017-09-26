@@ -30,6 +30,7 @@ class App extends Component {
     this.state = {
       image: null,
       imgPreview: null,
+
       data: [], // DATA FROM SERVER
       user: null
     }
@@ -79,8 +80,15 @@ class App extends Component {
     }
   }
 
+  handleTypeChange(e){
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
 //on submit
   handleSubmit(e){
+    console.log(this.state.typeID)
     e.preventDefault();
 
     var CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/ga-mao/image/upload';
@@ -102,8 +110,6 @@ class App extends Component {
     .then(res => {
       // THIS FUNCTION WILL SUBMIT URL TO DATABASE
       this.sendToDB(res.data.secure_url);
-    })
-    .then(res => {
       this.setState({ imgPreview: res.data.secure_url });
     })
     .catch(err => {
@@ -118,7 +124,7 @@ class App extends Component {
       url: 'http://localhost:3001/api/outfits', // ENDPOINT TO GET INFORMATION
     })
     .then(res => {
-      console.log(res);
+      console.log(res + ' response');
       // SET STATE WITH INFORMATION YOU RECEIVED
       this.setState({ data: res.data.data })
     })
@@ -129,9 +135,10 @@ class App extends Component {
   sendToDB(url){
     axios({
       method: 'POST',
-      url: 'http://localhost:3001/api/outfits', // ENDPOINT WHERE THIS URL IS GOING
+      url: 'http://localhost:3001/api/outfits/upload', // ENDPOINT WHERE THIS URL IS GOING
       data: {
-        url: url
+        url: url,
+        type_id: this.state.typeID
       }
     })
     .then(res => {
@@ -169,15 +176,19 @@ class App extends Component {
             <Route path='/OutfitUpload' render={(props) =>
               (
                 <OutfitUpload
+                  sendToDB={this.sendToDB}
                   handleSubmit={this.handleSubmit}
                   handleChange = {this.handleChange}
                   imgPreview={this.state.imgPreview}
+                  handleTypeChange={this.handleTypeChange}
+                  typeID={this.state.typeID}
                   {...props}
                 />
               )}
             />
 
-            <Route path='/' component={(props) => <OutfitNewHome {...props} data={this.state.data} user={this.state.user} />} />
+            <Route path='/OutfitMake' component={(props) => <OutfitMake {...props} data={this.state.data} />} />
+            <Route path='/' component={(props) => <OutfitNewHome {...props} data={this.state.data} user={this.state.user}/>} />
             <Redirect to= '/' />
 
           </Switch>

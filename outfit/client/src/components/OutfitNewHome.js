@@ -4,8 +4,6 @@ import React, { Component } from 'react';
 // import axios from 'axios';
 // import Carousel from './Carousel';
 import { Link } from 'react-router-dom';
-
-
  class OutfitNewHome extends Component {
 
    render() {
@@ -22,6 +20,4 @@ import { Link } from 'react-router-dom';
       );
     }
   }
-
-
 export default OutfitNewHome;

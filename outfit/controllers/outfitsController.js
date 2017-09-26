@@ -29,6 +29,20 @@ outfitsController.show = (req,res) => {
   });
 };
 
+outfitsController.upload = (req, res) => {
+  Outfit.createClothing({ url: req.body.url, type_id: req.body.type_id })
+  .then(outfit => {
+    res.json({
+      message: 'ok',
+      data: { outfit }
+    });
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(400).json({message: '400', err});
+  });
+};
+
 //THIS NEEDS TO CHANGE = req.body.outfit
 outfitsController.create = (req, res) => {
   Outfit.create(2, [3,7,1,4])
@@ -91,6 +105,5 @@ outfitsController.delete = (req, res) => {
     res.status(500).json(err);
   });
 };
-
 
 module.exports = outfitsController;
