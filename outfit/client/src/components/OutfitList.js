@@ -56,7 +56,7 @@ renderOutfits(){
     )}
       ;
   });
-  console.log(images);
+  console.log(images + ' images');
   return images;
 }
 

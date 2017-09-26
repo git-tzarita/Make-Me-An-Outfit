@@ -30,13 +30,15 @@ class App extends Component {
     this.state = {
       image: null,
       imgPreview: null,
+      typeID: '',
       data: [] // DATA FROM SERVER
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
+    // this.handleLogin = this.handleLogin.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleTypeChange = this.handleTypeChange.bind(this);
   }
 
   /* triggered before rendering, but will be overrritten by "didMount" */
@@ -75,8 +77,15 @@ class App extends Component {
     }
   }
 
+  handleTypeChange(e){
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
 //on submit
   handleSubmit(e){
+    console.log(this.state.typeID)
     e.preventDefault();
 
     var CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/ga-mao/image/upload';
@@ -98,8 +107,6 @@ class App extends Component {
     .then(res => {
       // THIS FUNCTION WILL SUBMIT URL TO DATABASE
       this.sendToDB(res.data.secure_url);
-    })
-    .then(res => {
       this.setState({ imgPreview: res.data.secure_url });
     })
     .catch(err => {
@@ -111,10 +118,10 @@ class App extends Component {
   getDataFromDB(){
     axios({
       method: 'GET',
-      url: '/api/outfits', // ENDPOINT TO GET INFORMATION
+      url: 'http://localhost:3001/api/outfits', // ENDPOINT TO GET INFORMATION
     })
     .then(res => {
-      console.log(res);
+      console.log(res + ' response');
       // SET STATE WITH INFORMATION YOU RECEIVED
       this.setState({ data: res.data.data })
     })
@@ -125,9 +132,10 @@ class App extends Component {
   sendToDB(url){
     axios({
       method: 'POST',
-      url: '/api/outfits', // ENDPOINT WHERE THIS URL IS GOING
+      url: 'http://localhost:3001/api/outfits/upload', // ENDPOINT WHERE THIS URL IS GOING
       data: {
-        url: url
+        url: url,
+        type_id: this.state.typeID
       }
     })
     .then(res => {
@@ -137,21 +145,21 @@ class App extends Component {
   }
 
 
-  handleLogin(username,password) {
+  // handleLogin(username,password) {
 
-    axios({
-      method: 'GET',
-      url: '/login',
-      params: {"username": username}
-    })
-    .then(res => {
+  //   axios({
+  //     method: 'GET',
+  //     url: 'http://localhost:3001/login',
+  //     params: {"username": username}
+  //   })
+  //   .then(res => {
 
-      if(res.data.user === username && res.data.data===password)
-       //if response from server confirms users exists ND password is correct
-       this.setState({user:res.data.user})
+  //     if(res.data.user === username && res.data.data===password)
+  //      //if response from server confirms users exists ND password is correct
+  //      this.setState({user:res.data.user})
 
-      // it should send the user id
-    })
+  //     // it should send the user id
+  //   })
     // .then(res => {
     //   // then another axios call to DB to pull all their clothes based on user id
     //   axios({
@@ -172,10 +180,10 @@ class App extends Component {
     //     })
     //   })
     // })
-    .catch(err => {
-      console.log('error posting');
-    })
-  }
+  //   .catch(err => {
+  //     console.log('error posting');
+  //   })
+  // }
 
    handleClick(){
     console.log(this.state.data)
@@ -207,9 +215,12 @@ class App extends Component {
             <Route path='/OutfitUpload' render={(props) =>
               (
                 <OutfitUpload
+                  sendToDB={this.sendToDB}
                   handleSubmit={this.handleSubmit}
                   handleChange = {this.handleChange}
                   imgPreview={this.state.imgPreview}
+                  handleTypeChange={this.handleTypeChange}
+                  typeID={this.state.typeID}
                   {...props}
                 />
               )}

@@ -15,7 +15,7 @@ componentDidMount() {
   console.log('these are the props --->', this.props)
   axios({
       method: 'GET',
-      url: `/api/outfits/${this.state.outfitId}`
+      url: `http://localhost:3001/api/outfits/${this.state.outfitId}`
     })
     .then(res => {
       console.log(res);
@@ -29,12 +29,12 @@ componentDidMount() {
 }
 
 renderOutfit(){
-  console.log(this.state.outfit)
+  console.log(this.state.outfit + ' state: outfit')
   if(this.state.apiDataLoaded === true){
-  let outfit = this.state.outfit.map(outfit => {
+  let outfit = this.state.outfit.map((outfit, index) => {
     return (
       <div>
-        <img src={outfit.url} alt="fulloutfit" />
+        <img src={outfit.url} alt="fulloutfit" key={index} />
       </div>
     );
   })
