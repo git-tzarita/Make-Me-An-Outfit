@@ -32,6 +32,7 @@ class App extends Component {
       imgPreview: null,
       typeID: '',
       data: [] // DATA FROM SERVER
+
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -39,6 +40,7 @@ class App extends Component {
     // this.handleLogin = this.handleLogin.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleTypeChange = this.handleTypeChange.bind(this);
+
   }
 
   /* triggered before rendering, but will be overrritten by "didMount" */

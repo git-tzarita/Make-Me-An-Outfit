@@ -12,6 +12,7 @@ const Header = (props) => (
         <li><Link to="/OutfitEdit">Edit</Link></li>
         <li><Link to="/OutfitList">List</Link></li>
         <li><Link to="/OutfitUpload">Upload</Link></li>
+        <li><Link to="/auth">Login</Link></li>
       </ul>
     </nav>
   </header>
