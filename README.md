@@ -8,46 +8,46 @@ Make Me an Outfit is a website that makes mornings a little bit easier. Users ca
 
 ## Technologies Used ###
 
-- CSS3
-- Vanilla Javascript
-- node.js
-- express.js
-- React Native
-- Cloudinary API
+- CSS3  
+- Vanilla Javascript  
+- node.js  
+- express.js  
+- React Native  
+- Cloudinary API  
 
-## About the Build ###
-**Express.js/Node.js**
-Aileen
+## About the Build ###  
+**Express.js/Node.js**  
+Aileen  
 
-#### Wins: ### 
--5 table join is working!
+#### Wins: ###  
+-5 table join is working!  
 -Understand PSQL more than ever  
 
 #### Losses: ###  
--Cannot post new outfits to database due to table setup
--Spent a lot of time working on database issues, which cut into time helping with React
+-Cannot post new outfits to database due to table setup  
+-Spent a lot of time working on database issues, which cut into time helping with React  
 
-**React Native**
-Mao and Aileen
+**React Native**  
+Mao and Aileen  
 
-#### Wins: ### 
--Good learning  experience in connecting frontend to Backend
+#### Wins: ###  
+-Good learning experience in connecting frontend to backend  
 -Having Aileen in my team to bail us out  
 
 #### Losses: ###  
-- Still need practice and understanding in passing props and components with React
+- Still need practice and understanding in passing props and components with React  
 
-**User Authentication**
-MD
+**User Authentication**  
+MD  
 
-#### Wins: ### 
-- Login is working where users can store their username and password to the database.
+#### Wins: ###  
+- Login is working where users can store their username and password to the database. 
 
 #### Losses: ###  
-- working with real authentication using passport, token and firebase.
-- Firebase is working but does not match our criteria.
+- working with real authentication using passport, token and firebase.  
+- Firebase is working but does not match our criteria.  
 
-**API**
+**API**  
 Cloudinary was very easy to use. There were lots of tutorials online so we felt comfortable immediately implementing it in our app. We decided to go with Cloudinary as our API so the user would be able to store their own images of clothing, which is integral to our app. 
 
 ### Example Code ###
