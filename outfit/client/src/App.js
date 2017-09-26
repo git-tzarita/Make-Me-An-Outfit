@@ -1,44 +1,35 @@
 import React, { Component } from 'react';
-// import { Navbar, Jumbotron, Button } from 'react-bootstrap';
-// import { Image } from 'cloudinary-react';
 import axios from 'axios';
-import './App.css';
-import Authen from './components/Authen';
+import { Route, Redirect, Switch } from 'react-router-dom';
 
+import Authen from './components/Authen';
 import Header from './components/Header';
 import Footer from './components/Footer';
-// import OutfitHome from './components/OutfitHome';
 import OutfitEdit from './components/OutfitEdit';
 import OutfitList from './components/OutfitList';
 import OutfitNewHome from './components/OutfitNewHome';
 import OutfitMake from './components/OutfitMake';
 import OutfitUpload from './components/OutfitUpload';
-// import Slider from 'react-image-slider';
-import './Carousel.css';
 import Single from './components/single';
 
-
-
-// import Carousel from './components/Carousel';
-
-import { Route, Redirect, Switch } from 'react-router-dom';
+import './App.css';
+import './Carousel.css';
 
 class App extends Component {
   constructor(){
     super();
-
     this.state = {
       image: null,
       imgPreview: null,
-
+      typeID: '',
       data: [], // DATA FROM SERVER
       user: null
     }
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.setUser = this.setUser.bind(this);
+    this.handleTypeChange = this.handleTypeChange.bind(this);
   }
 
   setUser(username) {
@@ -57,7 +48,6 @@ class App extends Component {
   componentDidMount() {
     console.log('APP did mount');
     this.getDataFromDB();
-
   }
 
   handleChange(e){
@@ -71,7 +61,6 @@ class App extends Component {
         },
         false
       );
-
       if (e.currentTarget.files['0']) {
         // reading file
         fReader.readAsDataURL(e.currentTarget.files['0']);
@@ -88,14 +77,14 @@ class App extends Component {
 
 //on submit
   handleSubmit(e){
-    console.log(this.state.typeID)
+    //console.log(this.state.typeID)
     e.preventDefault();
 
     var CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/ga-mao/image/upload';
     var CLOUDINARY_UPLOAD_PRESET = 'jd8p5ppp';
-
     var file = this.state.image;
     var formData = new FormData();
+
     formData.append('file', file);
     formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
 
@@ -124,7 +113,6 @@ class App extends Component {
       url: 'http://localhost:3001/api/outfits', // ENDPOINT TO GET INFORMATION
     })
     .then(res => {
-      console.log(res + ' response');
       // SET STATE WITH INFORMATION YOU RECEIVED
       this.setState({ data: res.data.data })
     })
@@ -146,7 +134,6 @@ class App extends Component {
     })
     .catch(err => console.error(err));
   }
-
    handleClick(){
     console.log(this.state.data)
   }
@@ -157,14 +144,12 @@ class App extends Component {
         <div className="App-header">
           <Header />
         </div>
-
         <main>
           <Switch>
             <Route path='/OutfitEdit' component={(props) => <OutfitEdit {...props} data={this.state.data} />} />
             <Route exact path='/OutfitList' component={(props) => <OutfitList {...props} data={this.state.data} />} />
             <Route exact path='/OutfitList/:id' component={Single} />
             <Route path='/Auth' component={(props) => <Authen {...props} setUser={this.setUser} />}/>
-
             <Route path='/OutfitUpload' render={(props) =>
               (
                 <OutfitUpload
@@ -178,11 +163,9 @@ class App extends Component {
                 />
               )}
             />
-
             <Route path='/OutfitMake' component={(props) => <OutfitMake {...props} data={this.state.data} />} />
             <Route path='/' component={(props) => <OutfitNewHome {...props} data={this.state.data} user={this.state.user}/>} />
             <Redirect to= '/' />
-
           </Switch>
         </main>
         <button onClick={this.handleClick}>state</button>
