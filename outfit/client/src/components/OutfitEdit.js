@@ -31,7 +31,6 @@ renderOutfitsBottoms(){
     return (
         <img src={outfit.url} key={index} alt ="outfits" />
     )}
-
       ;
   });
   return images;
@@ -40,7 +39,6 @@ renderOutfitsBottoms(){
   render() {
     return (
       <div>
-        <h2>Edit</h2>
         <div id="editTop" className ="randomImg">
           <Slider images={this.props.images} isInfinite delay={false} >
             {this.renderOutfitsTops()}

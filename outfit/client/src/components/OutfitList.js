@@ -81,14 +81,11 @@ renderOutfits(){
       <div>
         <div id="oufitListWrapper">
           <div id="outfitGrouped">
-            <button onClick= {this.handleOnClick}>View Outfit</button>
             <div id="listTop">
                 {this.renderOutfits()}
             </div>
           </div>
         </div>
-
-        <div></div>
       </div>
     );
   }
