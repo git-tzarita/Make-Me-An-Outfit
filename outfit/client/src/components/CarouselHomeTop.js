@@ -9,6 +9,7 @@ class CarouselHomeTop extends Component {
           <img src={outfit.url} key={index} />
         );
     });
+
     return images;
   }
 
@@ -19,6 +20,7 @@ class CarouselHomeTop extends Component {
           <Slider images={this.props.images} isInfinite delay={5000}>
             {this.renderOutfits()}
           </Slider>
+
         </div>
         <h2>Hello from Outfit List page</h2>
         {this.renderOutfits()}
@@ -27,5 +29,6 @@ class CarouselHomeTop extends Component {
     );
   }
 }
+
 
 export default CarouselHomeTop;

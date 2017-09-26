@@ -47,6 +47,7 @@ outfitsController.upload = (req, res) => {
 outfitsController.create = (req, res) => {
   Outfit.create(2, [3,7,1,4])
   .then(outfit => {
+
     res.json({
       message: 'ok',
       data: { outfit }

@@ -137,7 +137,6 @@ main a {
   }
 
   .App-header {
-    border: 1px solid red;
 
   }
   .App-header h2 {
@@ -154,7 +153,6 @@ main a {
   .mainNAv li a{
   font-size: 1em;
   margin: 6em 0;
-  border: 1px solid red;
 }
 
 

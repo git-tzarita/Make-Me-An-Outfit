@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import Slider from 'react-image-slider';
+// import { Image } from 'cloudinary-react';
+// import axios from 'axios';
+// import Carousel from './Carousel';
+// import { Link } from 'react-router-dom';
+
 
  class OutfitMake extends Component {
   constructor(props){
@@ -8,11 +13,12 @@ import Slider from 'react-image-slider';
       clicked: false
     }
     this.onclickStop = this.onclickStop.bind(this);
-    // this.onclickSave = thisonclickSave.bind(this)
-    // this.handleClick = this.handleClick.bind(this);
   }
 
-  renderOutfits(){
+
+
+
+  renderOutfitsTops(){
     let images = this.props.data.map((outfit, index) => {
       console.log(outfit.type_id===1)
 
@@ -43,31 +49,38 @@ import Slider from 'react-image-slider';
     return images;
   }
 
+
   onclickStop(e){
     this.setState({ clicked: true })
   }
 
-  render() {
+
+
+
+
+
+
+   render() {
       return (
         <div className="randomizer">
           <div className="randomizeImg">
             <div className="randomImg">
-              <Slider
-                ref="slider"
-                id="slider"
-                images={this.props.images}
-                isInfinite delay={this.state.clicked ? 0 : 1000 }
-                visibleItems={1}>
-                  {this.renderOutfits()}
+              <Slider ref="slider" id='slider' images={this.props.images} isInfinite delay={this.state.clicked ? 0 : 300 } visibleItems={1}>
+              {this.renderOutfitsTops()}
               </Slider>
             </div>
-             <button onClick={this.onclickStop}>PassStop</button>
-             <button onClick= {this.onclickSave}>Save</button>
-             <button onClick={this.handleClick}>state</button>
+            <div className="randomImg">
+              <Slider ref="slider" id='slider' images={this.props.images} isInfinite delay={this.state.clicked ? 0 : 300 } visibleItems={1}>
+              {this.renderOutfitsBottoms()}
+              </Slider>
             </div>
+             <button onClick={this.onclickStop}>Stop</button>
+             <button onClick= {this.onclickSave}>Save</button>
+          </div>
         </div>
       );
     }
   }
+
 
 export default OutfitMake;
