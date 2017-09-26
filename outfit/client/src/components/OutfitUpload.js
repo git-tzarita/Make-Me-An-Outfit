@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 class OutfitUpload extends Component {
 
-
   render() {
     return (
       <div>

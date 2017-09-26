@@ -137,8 +137,6 @@ Outfit.createClothing = (data) => {
 Outfit.create = (userID, clothingIDs) => {
   // debugger;
   const insertOutfits = async () => {
-    // get the new outfitID;
-    // userID --> outfitID
     const outfitID = await db.one(`
       INSERT INTO outfits (user_id)
       VALUES ($1)
@@ -155,72 +153,8 @@ Outfit.create = (userID, clothingIDs) => {
     return outfitID, itemID;
   };
   return insertOutfits();
-  //return db.tx(insertOutfits)
 }
 
-
-
-
-  // db.tx = t => {
-  //   const queries = [
-
-  //     ];
-  //   for (let i=1; i<=2; i++) {
-  //     queries.push(
-  //       outfits.one('INSERT INTO outfit_items (outfit_id, clothing_id) VALUES ($2, $3)', [outfit_id, clothing_id]));
-  //   }
-  //   return outfits.batch[queries]
-  //   .then((data) => {
-  //     console.log(data);
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   })
-  // }
-
-
-// Outfit.create = (outfits) => {
-//   db.tx = outfits => {
-//     const q1 = outfits.one('INSERT INTO outfits (user_id) VALUES ($1) RETURNING id', [id])
-//     const q2 = outfits.one('INSERT INTO outfit_items (outfit_id) VALUES ($2)', [outfit_id])
-//     const q3 = outfits.one('INSERT INTO outfit_items (outfit_id) VALUES ($3)', [outfit_id])
-//     const q4 = outfits.one('INSERT INTO outfit_items (clothing_id) VALUES ($4)', [clothing_id])
-//     const q5 = outfits.one('INSERT INTO outfit_items (clothing_id) VALUES ($5)', [clothing_id])
-
-//     return outfits.batch[q1, q2, q3, q4, q5];
-// }
-//   .then((data) => {
-//     console.log(data);
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
-
-// Outfit.create = outfits => {
-//   console.log('I am here')
-//   return db.one(`
-//     INSERT INTO outfits
-//       (user_id)
-//     VALUES ($1)
-//     RETURNING id`,
-//     [id]
-//     )
-//   .then((id) => {
-//     console.log(id);
-//     return db.one(`
-//       INSERT INTO outfit_items
-//       (outfit_id)
-//       VALUES ($2)`,
-//     )}
-//     )
-//   .then((outfits) => {
-//     return db.one(`
-//       INSERT INTO outfit_items
-//       (clothing_id)
-//       VALUES ($3)`,
-//     )
-//   })
-// }
 
 //for Auth only
 Outfit.findByUserName= (userName) =>{
