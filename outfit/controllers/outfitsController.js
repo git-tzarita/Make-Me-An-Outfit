@@ -93,34 +93,4 @@ outfitsController.delete = (req, res) => {
 };
 
 
-// user auth only//////////
-
-// outfitsController.findByUserName = (req,res) => {
-//   console.log("inside findByUserName again",  req.query.username)
-  // Outfit.findById(req.params.name)
-  // .then(outfit => {
-  //   res.json({
-  //     message: 'ok',
-  //     data: { outfit },
-  //   });
-  // })
-  // .catch(err => {
-  //   res.status(400).json({message: '400', err});
-  // });
-// };
-
-// outfitsController.create = (req, res) => {
-//   Outfit.create({
-//       user: req.body.name,username
-
-//     })
-//     .then(user => {
-//       res.json({message: 'ok', data: { user }});
-//     })
-//     .catch(err => {
-//       console.log(err);
-//       res.status(400).json({message: '400', err});
-//     });
-// };
-
 module.exports = outfitsController;

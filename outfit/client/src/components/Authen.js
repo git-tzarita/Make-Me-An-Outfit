@@ -34,14 +34,14 @@ class Authen extends Component{
 
   render(){
     return (
-      <div>
+      <div id="form">
         <form onSubmit={this.handleLogin}>
           <input id="username" type="text" name="inputUserValue" value={this.state.inputUserValue} onChange={this.handleChange} placeholder="Enter user name" /><br />
           <input id="pass" type="password" name="inputPasswordValue" value={this.state.inputPasswordValue} onChange={this.handleChange} placeholder="Enter Password" /><br />
-          <button type="submit">Log In</button>
+          <button id="auth" type="submit">Log In</button>
         </form>
-        <button>Sign Up</button>
-        <button>Log out</button>
+        <button id="auth">Sign Up</button>
+        <button id="auth">Log out</button>
         <h1>{this.state.user}</h1>
       </div>
      );
