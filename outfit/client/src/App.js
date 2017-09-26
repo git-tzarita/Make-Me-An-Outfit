@@ -31,12 +31,14 @@ class App extends Component {
       image: null,
       imgPreview: null,
       data: [] // DATA FROM SERVER
+
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.handleClick = this.handleClick.bind(this);
+
   }
 
   /* triggered before rendering, but will be overrritten by "didMount" */
@@ -214,8 +216,8 @@ class App extends Component {
                 />
               )}
             />
-
-            <Route path='/' component={(props) => <OutfitHome {...props} data={this.state.data} />} />
+            <Route path='/OutfitMake' component={(props) => <OutfitMake {...props} data={this.state.data} />} />
+            <Route path='/' component={(props) => <OutfitNewHome {...props} data={this.state.data} />} />
             <Redirect to= '/' />
 
           </Switch>
