@@ -9,9 +9,9 @@ import Slider from 'react-image-slider';
  class OutfitMake extends Component {
   constructor(props){
     super(props);
-    // this.state = {
-
-    // }
+    this.state = {
+      clicked: false
+    }
 
     this.onclickStop = this.onclickStop.bind(this);
     // this.onclickSave = thisonclickSave.bind(this)
@@ -33,20 +33,10 @@ import Slider from 'react-image-slider';
 
 
   onclickStop(e){
-    console.log("test");
-    // this.setState({
-    //   clearAnimate(),
-    // });
-
-    interval: false
-    console.log("this is Slider", Slider)
+    this.setState({ clicked: true })
   }
 
-  // handleClick(e){
-  //   console.log(e.target.data);
-  //   console.log(this.state.data);
 
-  //   }
 
 
 
@@ -55,7 +45,7 @@ import Slider from 'react-image-slider';
         <div className="randomizer">
           <div className="randomizeImg">
             <div className="randomImg">
-              <Slider images={this.props.images} isInfinite delay={5000} visibleItems={1}>
+              <Slider ref="slider" id='slider' images={this.props.images} isInfinite delay={this.state.clicked ? 0 : 1000 } visibleItems={1}>
               {this.renderOutfits()}
               </Slider>
             </div>

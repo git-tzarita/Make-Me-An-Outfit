@@ -9,7 +9,7 @@ render() {
     <div>
     <img src={this.props.topurl} />
     <img src={this.props.bottomurl} />
-    <Link to={`/OutfitList/${this.props.id}`}>See Outfit</Link>
+    <Link to={`/OutfitList/${this.props.id}`}>View Outfit</Link>
     </div>
     )
 }
