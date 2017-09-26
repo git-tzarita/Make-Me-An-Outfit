@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
    render() {
       return (
         <div className="randomizer">
-        {this.props.user ? `Thanks for logging in ${this.props.user}` : ''}
+        {this.props.user ? `Thanks for logging in ${this.props.user}` : '' }
           <nav className ="homeNav">
             <ul>
               <li><Link to="/OutfitMake">Get<br/> New<br/> Outfit</Link></li>

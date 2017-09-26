@@ -151,14 +151,6 @@ class App extends Component {
     console.log(this.state.data)
   }
 
-
-  // handleClick(){
-  //   this.setState({
-  //     user:this.refs.username.value
-  //   })
-  // }
-
-
   render() {
     return (
       <div className="App">

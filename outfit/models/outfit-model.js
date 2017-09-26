@@ -222,7 +222,7 @@ Outfit.create = (userID, clothingIDs) => {
 //   })
 // }
 
-//for Auth only
+//for Auth only needed next two
 Outfit.findByUserName= (userName) =>{
   return db.one(`
     SELECT * FROM users
