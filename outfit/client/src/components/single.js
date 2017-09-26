@@ -29,7 +29,7 @@ componentDidMount() {
 }
 
 renderOutfit(){
-  console.log(this.state.outfit + ' state: outfit')
+  console.log(this.state.outfit + ' state: outf')
   if(this.state.apiDataLoaded === true){
   let outfit = this.state.outfit.map((outfit, index) => {
     return (
